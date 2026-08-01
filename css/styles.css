@@ -1,0 +1,735 @@
+/* ============================================================
+   Rartist Studio — prelaunch page
+   Built from the Pencil design "Prelaunch Page".
+   Vanilla HTML + CSS, no build step.
+   ============================================================ */
+
+/* ── Tokens ────────────────────────────────────────────────── */
+:root {
+  --paper: #fcfaf7;
+  --ink: #000000;
+  --muted: #666666;
+  --night: #0a0a0a;
+
+  --on-night: #ffffff;
+  --on-night-70: #ffffffb3;
+  --on-night-60: #ffffff99;
+  --on-night-55: #ffffff8c;
+  --on-night-50: #ffffff80;
+  --rule-night: #ffffff4d;
+
+  --font-display: "Playfair Display", Georgia, serif;
+  --font-body: "Geist", system-ui, -apple-system, sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, "SF Mono", monospace;
+
+  /* Display sizes are viewport-relative so the headlines keep the
+     same intentional bleed past the edges at every width.
+     406px / 1440px design width = 28.194vw, etc. */
+  --fs-hero: 28.194vw;
+  --fs-statement: 13.194vw;
+  --fs-collection: 13.056vw;
+  --fs-signup: 27.222vw;
+
+  --gutter: 48px;
+}
+
+/* ── Reset ─────────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background-color: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 28px;
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+figure {
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.page {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  width: 100%;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ── Type primitives ──────────────────────────────────────── */
+.display {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+.display--hero {
+  font-size: var(--fs-hero);
+  line-height: 1;
+  letter-spacing: -0.01724em;
+}
+
+.display--statement {
+  font-size: var(--fs-statement);
+  line-height: 1;
+  letter-spacing: -0.02105em;
+}
+
+.display--collection {
+  font-size: var(--fs-collection);
+  line-height: 1;
+  letter-spacing: -0.0266em;
+}
+
+.display--signup {
+  font-size: var(--fs-signup);
+  line-height: 1;
+  letter-spacing: -0.02041em;
+}
+
+.mono {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 2.5px;
+  white-space: nowrap;
+}
+
+.mono--muted {
+  color: var(--muted);
+}
+
+.body {
+  font-size: 17px;
+  line-height: 28px;
+}
+
+.body--muted {
+  color: var(--muted);
+}
+
+.caption {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 21px;
+}
+
+.link {
+  transition: opacity 0.25s ease;
+}
+
+.link:hover,
+.link:focus-visible {
+  opacity: 0.55;
+}
+
+:focus-visible {
+  outline: 1px solid currentColor;
+  outline-offset: 4px;
+}
+
+/* ── Hero ─────────────────────────────────────────────────── */
+.hero {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 880px;
+  width: 100%;
+  overflow: hidden;
+  color: var(--on-night);
+  background-image: linear-gradient(0deg, #000000a6 0%, #00000080 45%, #000000e6 100%),
+    linear-gradient(#0a0a0a73, #0a0a0a73), url("../assets/hero.jpg");
+  background-position: 0% 0%, 0% 0%, center;
+  background-repeat: no-repeat, no-repeat, no-repeat;
+  background-size: 100% 100%, 100% 100%, cover;
+}
+
+.hero__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 36px var(--gutter);
+}
+
+.hero__logo {
+  display: block;
+  flex-shrink: 0;
+  transition: opacity 0.25s ease;
+}
+
+.hero__logo:hover,
+.hero__logo:focus-visible {
+  opacity: 0.7;
+}
+
+/* The lockup is two stacked lines, so it is sized by height and lets
+   width follow the 40.68 : 21.95 viewBox. */
+.logo {
+  display: block;
+  height: 42px;
+  width: auto;
+}
+
+.hero__status {
+  color: var(--on-night-70);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 2.5px;
+  white-space: nowrap;
+}
+
+.hero__statement-row {
+  display: flex;
+  justify-content: center;
+  padding: 0 var(--gutter);
+}
+
+.hero__statement {
+  width: 520px;
+  max-width: 100%;
+  font-size: 17px;
+  line-height: 27px;
+  text-align: center;
+}
+
+.hero__headline-row {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 20px;
+}
+
+/* ── Statement ────────────────────────────────────────────── */
+.statement {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 200px 0;
+  width: 100%;
+}
+
+.statement__headline-row {
+  display: flex;
+  justify-content: center;
+}
+
+/* ── Editorial ────────────────────────────────────────────── */
+.editorial {
+  display: flex;
+  flex-direction: column;
+  gap: 150px;
+  padding: 0 var(--gutter) 180px;
+  width: 100%;
+}
+
+.editorial__row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.editorial__label {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 220px;
+  flex-shrink: 0;
+}
+
+.editorial__body {
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+  width: 520px;
+  flex-shrink: 1;
+}
+
+.editorial__link {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+  width: 220px;
+  flex-shrink: 0;
+}
+
+.editorial__photo-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 32px;
+  padding-left: 620px;
+}
+
+.editorial__photo {
+  width: 440px;
+  height: 560px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.editorial__caption {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 200px;
+  flex-shrink: 0;
+}
+
+/* ── Collection ───────────────────────────────────────────── */
+.collection {
+  display: flex;
+  flex-direction: column;
+  gap: 120px;
+  overflow: hidden;
+  padding-bottom: 190px;
+  width: 100%;
+}
+
+.collection__headline-row {
+  display: flex;
+  justify-content: center;
+}
+
+.plates {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 70px;
+  padding: 0 var(--gutter);
+}
+
+.plate {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  flex-shrink: 0;
+}
+
+.plate__image {
+  object-fit: cover;
+}
+
+.plate__caption {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.plate__title {
+  font-size: 15px;
+  line-height: normal;
+  white-space: nowrap;
+}
+
+/* Staggered baselines, straight from the design. */
+.plate--002 .plate__image {
+  width: 320px;
+  height: 430px;
+}
+
+.plate--002,
+.plate--002 .plate__caption {
+  width: 320px;
+}
+
+.plate--009 {
+  padding-top: 140px;
+}
+
+.plate--009 .plate__image {
+  width: 400px;
+  height: 290px;
+}
+
+.plate--009,
+.plate--009 .plate__caption {
+  width: 400px;
+}
+
+.plate--017 {
+  padding-top: 60px;
+}
+
+.plate--017 .plate__image {
+  width: 280px;
+  height: 380px;
+}
+
+.plate--017,
+.plate--017 .plate__caption {
+  width: 280px;
+}
+
+/* ── Signup ───────────────────────────────────────────────── */
+.signup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 70px;
+  overflow: hidden;
+  padding-top: 150px;
+  width: 100%;
+  background-color: var(--night);
+  color: var(--on-night);
+}
+
+.signup__eyebrow {
+  color: var(--on-night-50);
+  letter-spacing: 3px;
+}
+
+.signup__form {
+  display: flex;
+  align-items: flex-end;
+  max-width: 100%;
+}
+
+.signup__field {
+  display: flex;
+  width: 440px;
+  max-width: 100%;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--rule-night);
+  transition: border-color 0.25s ease;
+}
+
+.signup__field:focus-within {
+  border-bottom-color: var(--on-night);
+}
+
+.signup__input {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--on-night);
+  font-family: var(--font-body);
+  font-size: 18px;
+  line-height: normal;
+}
+
+.signup__input::placeholder {
+  color: var(--on-night-55);
+}
+
+.signup__input:focus {
+  outline: none;
+}
+
+.signup__submit {
+  padding: 19px 34px;
+  border: 0;
+  background-color: var(--on-night);
+  color: var(--ink);
+  font-size: 12px;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: opacity 0.25s ease;
+}
+
+.signup__submit:hover:not(:disabled) {
+  opacity: 0.8;
+}
+
+.signup__submit:disabled {
+  cursor: default;
+  opacity: 0.55;
+}
+
+.signup__fine-print {
+  width: 520px;
+  max-width: 100%;
+  color: var(--on-night-60);
+  font-size: 14px;
+  line-height: 24px;
+  text-align: center;
+}
+
+.signup__fine-print.is-confirmed {
+  color: var(--on-night);
+}
+
+.signup__field.has-error {
+  border-bottom-color: var(--on-night);
+}
+
+.signup__headline-row {
+  display: flex;
+  justify-content: center;
+  padding-top: 60px;
+  width: 100%;
+}
+
+/* ── Footer ───────────────────────────────────────────────── */
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  padding: 44px var(--gutter);
+  width: 100%;
+  background-color: var(--paper);
+}
+
+.footer__links {
+  display: flex;
+  gap: 36px;
+}
+
+/* ── 404 ──────────────────────────────────────────────────── */
+.notfound {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+  min-height: 100vh;
+  padding: 80px var(--gutter);
+  text-align: center;
+}
+
+.notfound__headline {
+  font-size: clamp(48px, 9vw, 130px);
+  line-height: 1;
+  letter-spacing: -0.025em;
+  white-space: normal;
+}
+
+.notfound__body {
+  max-width: 440px;
+  color: var(--muted);
+  font-size: 17px;
+  line-height: 28px;
+}
+
+.notfound__link {
+  text-decoration: underline;
+  text-underline-offset: 6px;
+}
+
+/* ── Reveal ───────────────────────────────────────────────── */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.9s cubic-bezier(0.2, 0.7, 0.2, 1),
+    transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+[data-reveal].is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* ── Responsive ───────────────────────────────────────────── */
+@media (max-width: 1180px) {
+  .editorial__row {
+    flex-wrap: wrap;
+    gap: 48px;
+  }
+
+  .editorial__body {
+    order: 3;
+    width: 100%;
+  }
+
+  .editorial__photo-row {
+    padding-left: 0;
+    justify-content: flex-start;
+  }
+
+  .plates {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 56px;
+  }
+
+  .plate--009,
+  .plate--017 {
+    padding-top: 0;
+  }
+}
+
+@media (max-width: 860px) {
+  :root {
+    --gutter: 24px;
+    /* Below tablet the display type gains a little relative weight so the
+       bleed stays deliberate rather than looking like a bug. */
+    --fs-hero: 34vw;
+    --fs-statement: 17vw;
+    --fs-collection: 16vw;
+    --fs-signup: 33vw;
+  }
+
+  .hero {
+    height: auto;
+    min-height: 620px;
+    gap: 80px;
+  }
+
+  .hero__bar {
+    padding: 24px var(--gutter);
+  }
+
+  .logo {
+    height: 32px;
+  }
+
+  .statement {
+    padding: 120px 0;
+  }
+
+  .editorial {
+    gap: 90px;
+    padding-bottom: 110px;
+  }
+
+  .editorial__photo-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .editorial__photo {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 440 / 560;
+  }
+
+  .editorial__caption {
+    width: 100%;
+  }
+
+  .collection {
+    gap: 72px;
+    padding-bottom: 110px;
+  }
+
+  .plate,
+  .plate__caption,
+  .plate--002,
+  .plate--002 .plate__caption,
+  .plate--009,
+  .plate--009 .plate__caption,
+  .plate--017,
+  .plate--017 .plate__caption {
+    width: 100%;
+  }
+
+  .plate__image,
+  .plate--002 .plate__image,
+  .plate--009 .plate__image,
+  .plate--017 .plate__image {
+    width: 100%;
+    height: auto;
+  }
+
+  .plate--002 .plate__image {
+    aspect-ratio: 320 / 430;
+  }
+
+  .plate--009 .plate__image {
+    aspect-ratio: 400 / 290;
+  }
+
+  .plate--017 .plate__image {
+    aspect-ratio: 280 / 380;
+  }
+
+  .plates {
+    flex-direction: column;
+    gap: 64px;
+  }
+
+  .signup {
+    gap: 48px;
+    padding-top: 100px;
+  }
+
+  .signup__form {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 24px;
+    width: 100%;
+    padding: 0 var(--gutter);
+  }
+
+  .signup__field {
+    width: 100%;
+  }
+
+  .signup__fine-print {
+    padding: 0 var(--gutter);
+  }
+
+  .signup__headline-row {
+    padding-top: 32px;
+  }
+
+  .footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .footer__links {
+    flex-direction: column;
+    gap: 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  * {
+    scroll-behavior: auto !important;
+  }
+}

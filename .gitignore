@@ -1,0 +1,10 @@
+# macOS
+.DS_Store
+._*
+
+# Editors
+.vscode/
+.idea/
+
+# Node (not used today, but keeps stray installs out)
+node_modules/
