@@ -41,7 +41,11 @@
 }
 
 html {
+  /* Stop iOS from inflating text when the phone is turned to landscape. */
   -webkit-text-size-adjust: 100%;
+  /* The design is light-only; pin form controls so iOS dark mode does not
+     repaint the email field. */
+  color-scheme: light;
 }
 
 body {
@@ -81,8 +85,12 @@ a {
 .page {
   display: flex;
   flex-direction: column;
-  overflow: hidden;
   width: 100%;
+  /* The display headlines are meant to bleed past both edges. Clip that
+     bleed without turning the page into a horizontally pannable surface —
+     `clip` (unlike `hidden`) creates no scroll container at all. */
+  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 .visually-hidden {
@@ -566,7 +574,12 @@ a {
 }
 
 /* ── Responsive ───────────────────────────────────────────── */
-@media (max-width: 1180px) {
+
+/* Wide tablet — the three-column editorial row and the staggered plate
+   baselines are the first things to give. The threshold is set by the
+   widest fixed-width row: the offset editorial plate needs
+   620 + 440 + 32 + 200 + gutters = 1388px before it starts to overflow. */
+@media (max-width: 1400px) {
   .editorial__row {
     flex-wrap: wrap;
     gap: 48px;
@@ -594,68 +607,66 @@ a {
   }
 }
 
-@media (max-width: 860px) {
+/* Tablet — two plates per row rather than one giant column, and the
+   editorial plate stops trying to be 440px wide next to its caption. */
+@media (max-width: 900px) {
   :root {
-    --gutter: 24px;
-    /* Below tablet the display type gains a little relative weight so the
-       bleed stays deliberate rather than looking like a bug. */
-    --fs-hero: 34vw;
-    --fs-statement: 17vw;
-    --fs-collection: 16vw;
-    --fs-signup: 33vw;
+    --gutter: 32px;
   }
 
   .hero {
     height: auto;
-    min-height: 620px;
-    gap: 80px;
-  }
-
-  .hero__bar {
-    padding: 24px var(--gutter);
-  }
-
-  .logo {
-    height: 32px;
+    min-height: 680px;
+    gap: 72px;
   }
 
   .statement {
-    padding: 120px 0;
+    padding: 150px 0;
   }
 
   .editorial {
-    gap: 90px;
-    padding-bottom: 110px;
+    gap: 110px;
+    padding-bottom: 140px;
   }
 
   .editorial__photo-row {
-    flex-direction: column;
     align-items: flex-start;
-    gap: 20px;
+    gap: 28px;
   }
 
   .editorial__photo {
-    width: 100%;
+    width: 58%;
     height: auto;
     aspect-ratio: 440 / 560;
   }
 
   .editorial__caption {
-    width: 100%;
+    width: auto;
+    flex-shrink: 1;
   }
 
   .collection {
-    gap: 72px;
-    padding-bottom: 110px;
+    gap: 90px;
+    padding-bottom: 140px;
+  }
+
+  .plates {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 64px 40px;
   }
 
   .plate,
-  .plate__caption,
   .plate--002,
-  .plate--002 .plate__caption,
   .plate--009,
+  .plate--017 {
+    width: calc(50% - 20px);
+    flex-shrink: 1;
+  }
+
+  .plate__caption,
+  .plate--002 .plate__caption,
   .plate--009 .plate__caption,
-  .plate--017,
   .plate--017 .plate__caption {
     width: 100%;
   }
@@ -680,36 +691,14 @@ a {
     aspect-ratio: 280 / 380;
   }
 
-  .plates {
-    flex-direction: column;
-    gap: 64px;
-  }
-
   .signup {
-    gap: 48px;
-    padding-top: 100px;
+    gap: 56px;
+    padding-top: 120px;
   }
+}
 
-  .signup__form {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 24px;
-    width: 100%;
-    padding: 0 var(--gutter);
-  }
-
-  .signup__field {
-    width: 100%;
-  }
-
-  .signup__fine-print {
-    padding: 0 var(--gutter);
-  }
-
-  .signup__headline-row {
-    padding-top: 32px;
-  }
-
+/* Brand line + three links + copyright stop fitting on one line at ~960px. */
+@media (max-width: 960px) {
   .footer {
     flex-direction: column;
     align-items: flex-start;
@@ -717,8 +706,208 @@ a {
   }
 
   .footer__links {
+    gap: 28px;
+  }
+}
+
+/* Phone — one column throughout. The display sizes deliberately stay on
+   their design ratios (see :root) so the headline bleed reads the same
+   ~10% crop it does at 1440 instead of eating whole letters. */
+@media (max-width: 640px) {
+  :root {
+    --gutter: 24px;
+  }
+
+  /* The hero should own the first screen. svh keeps it stable while
+     mobile Safari's toolbars collapse; vh is the fallback. */
+  .hero {
+    height: auto;
+    min-height: 600px;
+    min-height: 100svh;
+    gap: 56px;
+  }
+
+  .hero__bar {
+    padding: 20px var(--gutter);
+    gap: 16px;
+  }
+
+  .logo {
+    height: 30px;
+  }
+
+  .hero__status {
+    font-size: 10px;
+    letter-spacing: 1.6px;
+  }
+
+  .hero__statement {
+    font-size: 16px;
+    line-height: 26px;
+  }
+
+  .hero__headline-row {
+    padding-bottom: 12px;
+  }
+
+  .statement {
+    padding: 110px 0;
+  }
+
+  /* Read order: what it is → the copy → the call to action. */
+  .editorial {
+    gap: 80px;
+    padding-bottom: 100px;
+  }
+
+  .editorial__row {
     flex-direction: column;
-    gap: 12px;
+    gap: 26px;
+  }
+
+  .editorial__label {
+    order: 1;
+    width: 100%;
+  }
+
+  .editorial__body {
+    order: 2;
+    gap: 22px;
+  }
+
+  .editorial__link {
+    order: 3;
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+    width: 100%;
+  }
+
+  .editorial__photo-row {
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .editorial__photo {
+    width: 100%;
+  }
+
+  .editorial__caption {
+    width: 100%;
+  }
+
+  .collection {
+    gap: 64px;
+    padding-bottom: 100px;
+  }
+
+  .plates {
+    flex-direction: column;
+    gap: 56px;
+  }
+
+  .plate,
+  .plate--002,
+  .plate--009,
+  .plate--017 {
+    width: 100%;
+  }
+
+  .signup {
+    gap: 44px;
+    padding: 96px var(--gutter) 0;
+  }
+
+  /* Long mono strings have to be allowed to break, or they run off the
+     screen — .mono is nowrap by default for short labels. */
+  .signup__eyebrow {
+    white-space: normal;
+    letter-spacing: 2px;
+    text-align: center;
+    line-height: 20px;
+  }
+
+  .signup__form {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 22px;
+    width: 100%;
+  }
+
+  .signup__field {
+    width: 100%;
+  }
+
+  .signup__submit {
+    padding: 20px 24px;
+  }
+
+  .signup__headline-row {
+    padding-top: 28px;
+    /* The section is padded for its readable content; the headline still
+       has to run the full bleed. */
+    width: calc(100% + var(--gutter) * 2);
+    margin: 0 calc(var(--gutter) * -1);
+  }
+
+  .footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 36px var(--gutter) 40px;
+  }
+
+  .footer .mono {
+    white-space: normal;
+    letter-spacing: 1.8px;
+  }
+
+  .footer__links {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  /* Comfortable thumb targets without changing the visual rhythm. */
+  .footer__links .link {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+  }
+}
+
+/* Phone held sideways — there is no vertical room for a full-height hero,
+   so let it collapse to its content rather than shrinking the headline
+   (which would cost the bleed). */
+@media (orientation: landscape) and (max-height: 520px) {
+  .hero {
+    height: auto;
+    min-height: 0;
+    gap: 28px;
+    padding-bottom: 8px;
+  }
+
+  .statement {
+    padding: 90px 0;
+  }
+}
+
+/* Small phones — the mono labels are the only thing that still doesn't fit. */
+@media (max-width: 380px) {
+  :root {
+    --gutter: 20px;
+  }
+
+  .mono {
+    letter-spacing: 1.8px;
+  }
+
+  .hero__status {
+    letter-spacing: 1.2px;
+  }
+
+  .signup__eyebrow {
+    letter-spacing: 1.4px;
   }
 }
 
