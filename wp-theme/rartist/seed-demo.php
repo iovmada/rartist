@@ -157,7 +157,20 @@ function rartist_seed_term( string $taxonomy, string $name, string $slug, array 
 	$term = get_term_by( 'slug', $slug, $taxonomy );
 
 	if ( $term ) {
-		wp_update_term( $term->term_id, $taxonomy, array( 'name' => $name ) );
+		/*
+		 * Pass the existing parent back explicitly. wp_update_term() defaults parent to
+		 * 0 when it is not supplied, so omitting it would silently flatten any grouping
+		 * an editor has set up — a re-run must never undo that.
+		 */
+		wp_update_term(
+			$term->term_id,
+			$taxonomy,
+			array(
+				'name'   => $name,
+				'parent' => (int) $term->parent,
+			)
+		);
+
 		$term_id = (int) $term->term_id;
 	} else {
 		$created = wp_insert_term( $name, $taxonomy, array( 'slug' => $slug ) );

@@ -65,6 +65,52 @@ function rartist_nav_items(): array {
 }
 
 /**
+ * Every collection as a dropdown row, parents followed by their children.
+ *
+ * Counts roll up, so a parent category reports everything beneath it. Built from the
+ * same option rows as the main panel, so the two dropdowns are one component.
+ *
+ * @return array<int,array{label:string,meta:string,url:string,depth:int,current:bool}>
+ */
+function rartist_collection_nav_items(): array {
+	$queried = is_tax( 'collection' ) ? (int) get_queried_object_id() : 0;
+	$rows    = array();
+
+	foreach ( rartist_all_collections() as $collection ) {
+		// Children are listed under their parent, not twice.
+		if ( ! empty( $collection['parent'] ) ) {
+			continue;
+		}
+
+		$rows[] = rartist_collection_nav_row( $collection, 0, $queried );
+
+		foreach ( $collection['children'] as $child ) {
+			$rows[] = rartist_collection_nav_row( $child, 1, $queried );
+		}
+	}
+
+	return $rows;
+}
+
+/**
+ * @param array<string,mixed> $collection
+ * @return array{label:string,meta:string,url:string,depth:int,current:bool}
+ */
+function rartist_collection_nav_row( array $collection, int $depth, int $queried ): array {
+	return array(
+		'label'   => $collection['name'],
+		'meta'    => sprintf(
+			/* translators: %s: zero-padded number of works */
+			__( '%s works', 'rartist' ),
+			rartist_pad( $collection['works_count'], 2 ) ?: '00'
+		),
+		'url'     => $collection['url'],
+		'depth'   => $depth,
+		'current' => $queried === (int) $collection['id'],
+	);
+}
+
+/**
  * Which destination the current request belongs to.
  */
 function rartist_nav_item_is_current( string $key ): bool {

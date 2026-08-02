@@ -1,41 +1,78 @@
 /*
- * Shell behaviour: the navigation panel.
+ * Shell behaviour: the navigation dropdowns.
  *
- * The panel is a real element in the document, hidden with [hidden]. Everything the
- * markup already conveys (aria-expanded, aria-controls) is kept in sync here; the CSS
- * decides whether it reads as a full-width panel or a compact sheet.
+ * There is more than one panel in the bar (destinations, collections) and each toggle
+ * names its own through aria-controls, so nothing here hard-codes an id. Opening one
+ * closes the others. The panels are real elements hidden with [hidden]; the CSS decides
+ * whether they read as a full-width sheet or a compact drawer.
  */
 
 (function () {
 	'use strict';
 
-	var panel = document.querySelector('[data-nav-panel]');
-	var toggles = document.querySelectorAll('[data-nav-toggle]');
+	var toggles = Array.prototype.slice.call(document.querySelectorAll('[data-nav-toggle]'));
 
-	if (!panel || !toggles.length) {
+	if (!toggles.length) {
 		return;
 	}
 
 	var scrim = null;
 
+	function panelFor(toggle) {
+		var id = toggle.getAttribute('aria-controls');
+
+		return id ? document.getElementById(id) : null;
+	}
+
+	function panels() {
+		return Array.prototype.slice.call(document.querySelectorAll('[data-nav-panel]'));
+	}
+
 	function isCompact() {
 		return window.matchMedia('(max-width: 900px)').matches;
 	}
 
-	function setExpanded(expanded) {
-		toggles.forEach(function (toggle) {
-			toggle.setAttribute('aria-expanded', expanded ? 'true' : 'false');
-		});
+	function removeScrim() {
+		if (scrim) {
+			scrim.remove();
+			scrim = null;
+			document.body.style.overflow = '';
+		}
 	}
 
-	function open() {
-		panel.hidden = false;
-		setExpanded(true);
+	function closeAll() {
+		panels().forEach(function (panel) {
+			panel.hidden = true;
+		});
 
-		if (isCompact() && !scrim) {
+		toggles.forEach(function (toggle) {
+			toggle.setAttribute('aria-expanded', 'false');
+		});
+
+		removeScrim();
+	}
+
+	function open(toggle) {
+		var panel = panelFor(toggle);
+
+		if (!panel) {
+			return;
+		}
+
+		closeAll();
+		panel.hidden = false;
+
+		// Every toggle pointing at this panel reflects the state, burger included.
+		toggles.forEach(function (other) {
+			if (panelFor(other) === panel) {
+				other.setAttribute('aria-expanded', 'true');
+			}
+		});
+
+		if (isCompact()) {
 			scrim = document.createElement('div');
 			scrim.className = 'nav-scrim';
-			scrim.addEventListener('click', close);
+			scrim.addEventListener('click', closeAll);
 			document.body.appendChild(scrim);
 			document.body.style.overflow = 'hidden';
 		}
@@ -47,56 +84,73 @@
 		}
 	}
 
-	function close() {
-		panel.hidden = true;
-		setExpanded(false);
+	toggles.forEach(function (toggle) {
+		toggle.addEventListener('click', function () {
+			var panel = panelFor(toggle);
 
-		if (scrim) {
-			scrim.remove();
-			scrim = null;
-			document.body.style.overflow = '';
-		}
-	}
+			if (panel && !panel.hidden) {
+				closeAll();
+				return;
+			}
 
-	function toggle() {
-		if (panel.hidden) {
-			open();
-		} else {
-			close();
-		}
-	}
-
-	toggles.forEach(function (button) {
-		button.addEventListener('click', toggle);
+			open(toggle);
+		});
 	});
 
-	panel.querySelectorAll('[data-nav-close]').forEach(function (button) {
-		button.addEventListener('click', close);
+	panels().forEach(function (panel) {
+		panel.querySelectorAll('[data-nav-close]').forEach(function (button) {
+			button.addEventListener('click', closeAll);
+		});
 	});
 
 	document.addEventListener('keydown', function (event) {
-		if ('Escape' === event.key && !panel.hidden) {
-			close();
-			toggles[0].focus({ preventScroll: true });
+		if ('Escape' !== event.key) {
+			return;
+		}
+
+		var openPanel = panels().filter(function (panel) {
+			return !panel.hidden;
+		})[0];
+
+		if (!openPanel) {
+			return;
+		}
+
+		var owner = toggles.filter(function (toggle) {
+			return panelFor(toggle) === openPanel;
+		})[0];
+
+		closeAll();
+
+		if (owner) {
+			owner.focus({ preventScroll: true });
 		}
 	});
 
-	// A click outside the panel closes it on desktop, where there is no scrim.
+	// A click outside closes it on desktop, where there is no scrim.
 	document.addEventListener('click', function (event) {
-		if (panel.hidden || isCompact()) {
+		if (isCompact()) {
 			return;
 		}
 
-		if (panel.contains(event.target)) {
+		var openPanels = panels().filter(function (panel) {
+			return !panel.hidden;
+		});
+
+		if (!openPanels.length) {
 			return;
 		}
 
-		for (var i = 0; i < toggles.length; i++) {
-			if (toggles[i].contains(event.target)) {
-				return;
-			}
-		}
+		var inside = openPanels.some(function (panel) {
+			return panel.contains(event.target);
+		});
 
-		close();
+		var onToggle = toggles.some(function (toggle) {
+			return toggle.contains(event.target);
+		});
+
+		if (!inside && !onToggle) {
+			closeAll();
+		}
 	});
 })();

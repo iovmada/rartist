@@ -201,3 +201,50 @@
 		display: none;
 	}
 }
+
+/* --- Collections panel -------------------------------------------------- */
+
+/*
+ * A panel with no feature column: the option rows run the full content width. Same
+ * rows, same footer strip, so the two dropdowns read as one component.
+ */
+.nav-panel__body--wide {
+	display: block;
+}
+
+/* A collection inside a parent category is stepped in, with its parent's rule. */
+.nav-option--child {
+	padding-left: 46px;
+}
+
+.nav-option--child .nav-option__label {
+	color: var(--ink-soft);
+}
+
+.nav-option--child::before {
+	content: "";
+	position: absolute;
+	left: 18px;
+	width: 14px;
+	height: 1px;
+	background: var(--border);
+}
+
+.nav-option {
+	position: relative;
+}
+
+.nav-option[aria-current] {
+	background: #f1eee8;
+}
+
+@media (max-width: 900px) {
+	.nav-option--child {
+		padding-left: 34px;
+	}
+
+	.nav-option--child::before {
+		left: 14px;
+		width: 10px;
+	}
+}

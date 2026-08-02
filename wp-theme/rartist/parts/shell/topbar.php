@@ -2,13 +2,17 @@
 /**
  * Top bar — frame AF73d.
  *
- * The third nav item opens the navigation panel; every other item is a plain link.
- * Below 900px the whole nav collapses into the panel and only a trigger remains.
+ * Two items in the nav open dropdowns, both built from the same panel component:
+ *
+ *   Collections       every collection, parents with their children beneath them
+ *   Curated rartists  the four destinations plus the feature copy (frame tu30N)
+ *
+ * Below 900px the whole nav collapses and a single Explore trigger opens the latter.
  *
  * Two variants:
- *   default     wordmark left, nav centre, enquire/bag right — on paper.
- *   prelaunch   the inlined logo left, nav centre, launch status right — white, laid
- *               over the dark hero, taking the place of the design's own hero bar.
+ *   default     lockup left, nav centre, enquire/bag right — on paper.
+ *   prelaunch   lockup left, nav centre, launch status right — white, laid over the
+ *               dark hero, taking the place of the design's own hero bar.
  *
  * @param string $args['variant'] '' or 'prelaunch'
  *
@@ -17,9 +21,17 @@
 
 defined( 'ABSPATH' ) || exit;
 
-$rartist_nav       = rartist_nav_items();
-$rartist_panel     = 'rartist-nav-panel';
-$rartist_prelaunch = 'prelaunch' === ( $args['variant'] ?? '' );
+$rartist_nav         = rartist_nav_items();
+$rartist_prelaunch   = 'prelaunch' === ( $args['variant'] ?? '' );
+$rartist_collections = rartist_collection_nav_items();
+
+// Which nav item opens which panel. Collections only becomes a dropdown when there is
+// something to drop down.
+$rartist_panels = array( 2 => 'rartist-nav-panel' );
+
+if ( ! empty( $rartist_collections ) ) {
+	$rartist_panels[1] = 'rartist-collections-panel';
+}
 ?>
 <div class="container">
 	<div class="topbar<?php echo $rartist_prelaunch ? ' topbar--over-hero' : ''; ?>">
@@ -46,12 +58,12 @@ $rartist_prelaunch = 'prelaunch' === ( $args['variant'] ?? '' );
 
 		<nav class="topbar__nav" aria-label="<?php esc_attr_e( 'Primary', 'rartist' ); ?>">
 			<?php foreach ( $rartist_nav as $rartist_index => $rartist_item ) : ?>
-				<?php if ( 2 === $rartist_index ) : ?>
+				<?php if ( isset( $rartist_panels[ $rartist_index ] ) ) : ?>
 					<button
 						class="topbar__toggle t-nav"
 						type="button"
 						aria-expanded="false"
-						aria-controls="<?php echo esc_attr( $rartist_panel ); ?>"
+						aria-controls="<?php echo esc_attr( $rartist_panels[ $rartist_index ] ); ?>"
 						data-nav-toggle
 					>
 						<?php echo esc_html( $rartist_item['short'] ); ?>
@@ -85,7 +97,7 @@ $rartist_prelaunch = 'prelaunch' === ( $args['variant'] ?? '' );
 			class="topbar__burger t-nav"
 			type="button"
 			aria-expanded="false"
-			aria-controls="<?php echo esc_attr( $rartist_panel ); ?>"
+			aria-controls="rartist-nav-panel"
 			data-nav-toggle
 		>
 			<?php esc_html_e( 'Explore', 'rartist' ); ?>
@@ -98,4 +110,28 @@ $rartist_prelaunch = 'prelaunch' === ( $args['variant'] ?? '' );
 	<?php endif; ?>
 </div>
 
-<?php get_template_part( 'parts/shell/nav-panel', null, array( 'id' => $rartist_panel ) ); ?>
+<?php
+// The destinations panel — frame tu30N.
+get_template_part(
+	'parts/shell/nav-panel',
+	null,
+	array(
+		'id'      => 'rartist-nav-panel',
+		'items'   => $rartist_nav,
+		'feature' => rartist_nav_feature(),
+		'title'   => __( 'Explore', 'rartist' ),
+	)
+);
+
+// The collections panel — same rows, no feature column, so the list runs full width.
+if ( ! empty( $rartist_collections ) ) {
+	get_template_part(
+		'parts/shell/nav-panel',
+		null,
+		array(
+			'id'    => 'rartist-collections-panel',
+			'items' => $rartist_collections,
+			'title' => __( 'Collections', 'rartist' ),
+		)
+	);
+}
