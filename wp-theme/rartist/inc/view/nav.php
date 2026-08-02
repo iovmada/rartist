@@ -93,6 +93,62 @@ function rartist_collection_nav_items(): array {
 }
 
 /**
+ * Every rartist as a dropdown row, in their numbered order.
+ *
+ * The meta line carries the discipline and location the profile shows, falling back to a
+ * work count for an artist whose fields are not filled in yet.
+ *
+ * @return array<int,array{label:string,meta:string,url:string,depth:int,current:bool}>
+ */
+function rartist_rartist_nav_items(): array {
+	$queried = is_tax( 'rartist' ) ? (int) get_queried_object_id() : 0;
+
+	$terms = get_terms(
+		array(
+			'taxonomy'   => 'rartist',
+			'hide_empty' => false,
+			'meta_key'   => 'number',
+			'orderby'    => 'meta_value',
+			'order'      => 'ASC',
+		)
+	);
+
+	if ( is_wp_error( $terms ) || empty( $terms ) ) {
+		return array();
+	}
+
+	$rows = array();
+
+	foreach ( $terms as $term ) {
+		$artist = rartist_rartist_view( $term );
+
+		if ( ! $artist ) {
+			continue;
+		}
+
+		$meta = $artist['discipline_line'];
+
+		if ( '' === $meta ) {
+			$meta = sprintf(
+				/* translators: %s: zero-padded number of works */
+				__( '%s works', 'rartist' ),
+				rartist_pad( $artist['works_count'], 2 ) ?: '00'
+			);
+		}
+
+		$rows[] = array(
+			'label'   => $artist['name'],
+			'meta'    => $meta,
+			'url'     => $artist['url'],
+			'depth'   => 0,
+			'current' => $queried === $artist['id'],
+		);
+	}
+
+	return $rows;
+}
+
+/**
  * @param array<string,mixed> $collection
  * @return array{label:string,meta:string,url:string,depth:int,current:bool}
  */

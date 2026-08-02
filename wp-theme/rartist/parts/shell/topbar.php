@@ -5,9 +5,11 @@
  * Two items in the nav open dropdowns, both built from the same panel component:
  *
  *   Collections       every collection, parents with their children beneath them
- *   Curated rartists  the four destinations plus the feature copy (frame tu30N)
+ *   Curated rartists  every rartist, with their discipline and location
  *
- * Below 900px the whole nav collapses and a single Explore trigger opens the latter.
+ * The design's destinations panel (frame tu30N, with its feature copy) is what the
+ * compact Explore trigger opens below 900px, where the nav itself is hidden. On desktop
+ * it would only repeat the four items already visible in the bar.
  *
  * Two variants:
  *   default     lockup left, nav centre, enquire/bag right — on paper.
@@ -24,13 +26,18 @@ defined( 'ABSPATH' ) || exit;
 $rartist_nav         = rartist_nav_items();
 $rartist_prelaunch   = 'prelaunch' === ( $args['variant'] ?? '' );
 $rartist_collections = rartist_collection_nav_items();
+$rartist_artists     = rartist_rartist_nav_items();
 
-// Which nav item opens which panel. Collections only becomes a dropdown when there is
-// something to drop down.
-$rartist_panels = array( 2 => 'rartist-nav-panel' );
+// Which nav item opens which panel. Each only becomes a dropdown when there is
+// something to drop down; otherwise the item stays a plain link to its index.
+$rartist_panels = array();
 
 if ( ! empty( $rartist_collections ) ) {
 	$rartist_panels[1] = 'rartist-collections-panel';
+}
+
+if ( ! empty( $rartist_artists ) ) {
+	$rartist_panels[2] = 'rartist-rartists-panel';
 }
 ?>
 <div class="container">
@@ -111,7 +118,7 @@ if ( ! empty( $rartist_collections ) ) {
 </div>
 
 <?php
-// The destinations panel — frame tu30N.
+// The destinations panel — frame tu30N. Opened by the compact Explore trigger.
 get_template_part(
 	'parts/shell/nav-panel',
 	null,
@@ -123,15 +130,25 @@ get_template_part(
 	)
 );
 
-// The collections panel — same rows, no feature column, so the list runs full width.
-if ( ! empty( $rartist_collections ) ) {
+// Collections and rartists — the same rows with no feature column, so each list runs
+// full width.
+foreach (
+	array(
+		array( 'rartist-collections-panel', $rartist_collections, __( 'Collections', 'rartist' ) ),
+		array( 'rartist-rartists-panel', $rartist_artists, __( 'Curated rartists', 'rartist' ) ),
+	) as $rartist_dropdown
+) {
+	if ( empty( $rartist_dropdown[1] ) ) {
+		continue;
+	}
+
 	get_template_part(
 		'parts/shell/nav-panel',
 		null,
 		array(
-			'id'    => 'rartist-collections-panel',
-			'items' => $rartist_collections,
-			'title' => __( 'Collections', 'rartist' ),
+			'id'    => $rartist_dropdown[0],
+			'items' => $rartist_dropdown[1],
+			'title' => $rartist_dropdown[2],
 		)
 	);
 }
