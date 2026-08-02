@@ -1,0 +1,291 @@
+/*
+ * Catalogue — frame iaMv8.
+ *
+ * Two art-directed pieces live here:
+ *
+ * 1. The headline. The frame sets ARTWORKS at 202px inside a 510-wide box, which
+ *    breaks the word by character into a stacked block (ART / WOR / KS) that the plate
+ *    collage then overlaps. That is reproduced literally. If it turns out to be an
+ *    artifact of the text box rather than intent, delete the width and word-break on
+ *    .catalogue__headline and it becomes one line.
+ *
+ * 2. The collage. Six plates at unequal widths, heights and vertical offsets. Encoded
+ *    as a six-slot cycle over a three-column grid, so any number of artworks flows
+ *    through the same rhythm — nothing is positioned per artwork.
+ */
+
+.catalogue__eyebrow {
+	margin-top: 52px;
+	letter-spacing: 0.25em;
+}
+
+.catalogue__head {
+	display: grid;
+	grid-template-columns: calc(100% * 967 / 1344) calc(100% * 390 / 1344);
+	align-items: start;
+}
+
+.catalogue__headline {
+	margin-top: 30px;
+	text-transform: uppercase;
+	max-width: 510px;
+	font-family: var(--font-display);
+	font-weight: 400;
+	font-size: var(--display-catalogue);
+	line-height: 1;
+	letter-spacing: -0.025em;
+	margin-left: -0.06em;
+	/* The frame's narrow box breaks the word mid-word; keep that. */
+	overflow-wrap: anywhere;
+	word-break: break-word;
+}
+
+.catalogue__intro {
+	margin-top: 103px;
+	max-width: 390px;
+}
+
+.catalogue__filters {
+	margin-top: 96px;
+}
+
+/* --- The collage -------------------------------------------------------- */
+
+.collage {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	column-gap: 0;
+	row-gap: 40px;
+	margin-top: 74px;
+	align-items: start;
+}
+
+/*
+ * Per-slot geometry, as percentages of a 448px column. Every number below is the
+ * frame's own measurement:
+ *   slot  width  left   top   ratio
+ *   1     360    0      0     360/520
+ *   2     330    24     95    330/425
+ *   3     377    71     0     377/570
+ *   4     430    0      60    430/525
+ *   5     300    114    0     300/585
+ *   6     362    86     100   362/485
+ */
+.collage > * {
+	--slot-width: 80.357%;
+	--slot-left: 0%;
+	--slot-top: 0px;
+	--slot-ratio: 360 / 520;
+
+	width: var(--slot-width);
+	margin-left: var(--slot-left);
+	margin-top: var(--slot-top);
+}
+
+.collage > *:nth-child(6n + 2) {
+	--slot-width: 73.661%;
+	--slot-left: 5.357%;
+	--slot-top: 95px;
+	--slot-ratio: 330 / 425;
+}
+
+.collage > *:nth-child(6n + 3) {
+	--slot-width: 84.152%;
+	--slot-left: 15.848%;
+	--slot-ratio: 377 / 570;
+}
+
+.collage > *:nth-child(6n + 4) {
+	--slot-width: 95.982%;
+	--slot-top: 60px;
+	--slot-ratio: 430 / 525;
+}
+
+.collage > *:nth-child(6n + 5) {
+	--slot-width: 66.964%;
+	--slot-left: 25.446%;
+	--slot-ratio: 300 / 585;
+}
+
+.collage > *:nth-child(6n) {
+	--slot-width: 80.804%;
+	--slot-left: 19.196%;
+	--slot-top: 100px;
+	--slot-ratio: 362 / 485;
+}
+
+.collage .plate-card__figure {
+	aspect-ratio: var(--slot-ratio);
+	overflow: hidden;
+}
+
+.collage .plate-card__figure img {
+	height: 100%;
+	object-fit: cover;
+}
+
+.collage .plate-card__number {
+	margin-top: 20px;
+	color: var(--ink-soft);
+	letter-spacing: 0.2em;
+}
+
+.collage .plate-card__title {
+	margin-top: 10px;
+	font-size: 14px;
+	letter-spacing: 0.021em;
+}
+
+.collage .plate-card__meta {
+	margin-top: 8px;
+	letter-spacing: 0.133em;
+}
+
+.catalogue__count {
+	margin-top: 32px;
+	text-align: right;
+	color: var(--ink-soft);
+	letter-spacing: 0.167em;
+}
+
+/* --- Collections index -------------------------------------------------- */
+
+.catalogue__collections-title {
+	margin-top: 33px;
+	text-transform: uppercase;
+	font-family: var(--font-display);
+	font-weight: 400;
+	font-size: var(--display-index);
+	line-height: 1;
+	letter-spacing: -0.028em;
+	margin-left: -0.06em;
+}
+
+.collection-feature {
+	display: grid;
+	align-items: start;
+	margin-top: 51px;
+}
+
+/* Odd features put the image left (625 / 113 gap / 520 copy). */
+.collection-feature {
+	grid-template-columns: calc(100% * 625 / 1344) calc(100% * 560 / 1344);
+	column-gap: calc(100% * 113 / 1344);
+}
+
+.collection-feature__figure {
+	margin: 0;
+	overflow: hidden;
+	background: #efece6;
+	aspect-ratio: 625 / 440;
+}
+
+.collection-feature__figure img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.collection-feature__number {
+	color: var(--ink-soft);
+	letter-spacing: 0.2em;
+}
+
+.collection-feature__title {
+	margin-top: 30px;
+	font-family: var(--font-display);
+	font-weight: 400;
+	font-size: var(--display-feature-a);
+	line-height: 1.02;
+	letter-spacing: -0.022em;
+	margin-left: -0.06em;
+}
+
+.collection-feature__description {
+	margin-top: 34px;
+	max-width: 400px;
+	line-height: 1.55;
+}
+
+.collection-feature__link {
+	margin-top: 40px;
+}
+
+/* Even features mirror: copy left, smaller image right (410 × 315). */
+.collection-feature:nth-of-type(even) {
+	grid-template-columns: calc(100% * 834 / 1344) calc(100% * 410 / 1344);
+	column-gap: calc(100% * 100 / 1344);
+	margin-top: 60px;
+}
+
+.collection-feature:nth-of-type(even) .collection-feature__figure {
+	order: 2;
+	aspect-ratio: 410 / 315;
+	margin-top: 25px;
+}
+
+.collection-feature:nth-of-type(even) .collection-feature__copy {
+	order: 1;
+}
+
+.collection-feature:nth-of-type(even) .collection-feature__title {
+	font-size: var(--display-feature-b);
+	letter-spacing: -0.024em;
+}
+
+.collection-feature:nth-of-type(even) .collection-feature__description {
+	max-width: 480px;
+}
+
+@media (max-width: 900px) {
+	.catalogue__head,
+	.collection-feature,
+	.collection-feature:nth-of-type(even) {
+		grid-template-columns: 1fr;
+		row-gap: 32px;
+	}
+
+	.catalogue__intro {
+		margin-top: 0;
+	}
+
+	.catalogue__headline {
+		max-width: none;
+		word-break: normal;
+		overflow-wrap: normal;
+	}
+
+	.collage {
+		grid-template-columns: repeat(2, 1fr);
+		column-gap: 24px;
+	}
+
+	.collage > *,
+	.collage > *:nth-child(6n + 2),
+	.collage > *:nth-child(6n + 3),
+	.collage > *:nth-child(6n + 4),
+	.collage > *:nth-child(6n + 5),
+	.collage > *:nth-child(6n) {
+		width: 100%;
+		margin-left: 0;
+		margin-top: 0;
+	}
+
+	.collection-feature:nth-of-type(even) .collection-feature__figure {
+		order: 0;
+		margin-top: 0;
+	}
+}
+
+@media (max-width: 520px) {
+	.collage {
+		grid-template-columns: 1fr;
+	}
+}
+
+/* A collection with no hero image yet: the copy spans the row instead of leaving a hole. */
+.collection-feature--no-image,
+.collection-feature--no-image:nth-of-type(even) {
+	grid-template-columns: minmax(0, calc(100% * 560 / 1344));
+	column-gap: 0;
+}

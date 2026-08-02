@@ -1,0 +1,64 @@
+/*
+ * Reserve bar — pairs with parts/ui/reserve-bar.php
+ *
+ * Frame Xo0YQ: 470 × 58 ink bar, label left, price right, 22px inline padding.
+ * The design labels it ADD TO BAG; with RARTIST_COMMERCE off it reserves by email,
+ * so the geometry is the design's and only the label differs.
+ */
+
+.reserve-bar {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 24px;
+	min-height: 58px;
+	padding-inline: 22px;
+	background: var(--ink);
+	color: var(--inverse);
+	transition: opacity 0.15s ease;
+}
+
+.reserve-bar:hover {
+	opacity: 0.86;
+}
+
+.reserve-bar__label {
+	letter-spacing: 0.2em;
+}
+
+.reserve-bar__price {
+	letter-spacing: 0.15em;
+}
+
+/* Sold out: still a bar, but inert. */
+.reserve-bar--sold-out {
+	background: var(--surface);
+	color: var(--ink-soft);
+	border: 1px solid var(--border);
+	cursor: default;
+}
+
+.reserve-bar--sold-out:hover {
+	opacity: 1;
+}
+
+.availability {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	margin-top: 24px;
+	color: var(--positive);
+	letter-spacing: 0.144em; /* 1.3px at 9px */
+}
+
+.availability--sold-out,
+.availability--reserved {
+	color: var(--ink-soft);
+}
+
+.availability__dot {
+	width: 5px;
+	height: 5px;
+	border-radius: 50%;
+	background: currentColor;
+}

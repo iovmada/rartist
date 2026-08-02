@@ -1,0 +1,65 @@
+/*
+ * Artist card — pairs with parts/ui/artist-card.php
+ *
+ * Frame kTNBO's artist block: 390 × 300 portrait beside the name, discipline line,
+ * short biography and a profile link. The same component serves the collection page,
+ * where two or more rartists sit side by side — hence the --compact variant.
+ */
+
+.artist-card__portrait {
+	margin: 0;
+	overflow: hidden;
+	background: #efece6;
+	aspect-ratio: 390 / 300;
+}
+
+.artist-card__portrait img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.artist-card__name {
+	/* The name sits 8px above the portrait's top edge in the frame. */
+	margin-top: -8px;
+}
+
+.artist-card__discipline {
+	margin-top: 16px;
+	color: var(--ink-soft);
+	letter-spacing: 0.189em; /* 1.7px at 9px */
+}
+
+.artist-card__bio {
+	margin-top: 26px;
+	max-width: 560px;
+}
+
+.artist-card__link {
+	margin-top: 30px;
+}
+
+/* Two or more rartists on one page: smaller portrait, stacked copy. */
+.artist-card--compact {
+	display: grid;
+	grid-template-columns: 200px 1fr;
+	column-gap: 32px;
+	align-items: start;
+}
+
+.artist-card--compact .artist-card__name {
+	margin-top: 0;
+	font-size: var(--display-5);
+}
+
+.artist-card--compact .artist-card__bio {
+	margin-top: 18px;
+	font-size: var(--body-s);
+}
+
+@media (max-width: 700px) {
+	.artist-card--compact {
+		grid-template-columns: 1fr;
+		row-gap: 20px;
+	}
+}

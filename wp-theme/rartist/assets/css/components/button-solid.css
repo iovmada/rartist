@@ -1,0 +1,44 @@
+/*
+ * Solid button — pairs with parts/ui/button-solid.php
+ * Frames WQQHl (17/28 padding, 15 gap) and x7Ai0 (16/25, 14). One component, the
+ * larger padding as the default and the tighter one as --compact.
+ */
+
+.button-solid {
+	display: inline-flex;
+	align-items: center;
+	gap: 15px;
+	padding: 17px 28px;
+	background: var(--ink);
+	color: var(--inverse);
+	transition: opacity 0.15s ease;
+}
+
+.button-solid:hover {
+	opacity: 0.86;
+}
+
+.button-solid__label {
+	letter-spacing: 0.18em;
+}
+
+.button-solid__arrow {
+	font-family: var(--font-body);
+	font-size: 17px;
+	line-height: 1;
+	letter-spacing: 0;
+	transition: transform 0.2s ease;
+}
+
+.button-solid:hover .button-solid__arrow {
+	transform: translateX(4px);
+}
+
+.button-solid--compact {
+	gap: 14px;
+	padding: 16px 25px;
+}
+
+.button-solid--compact .button-solid__label {
+	letter-spacing: 0.17em;
+}

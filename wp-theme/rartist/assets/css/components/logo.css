@@ -1,0 +1,24 @@
+/*
+ * The Rartist Studio lockup — pairs with parts/ui/logo.php
+ *
+ * The brand identity for the whole site, not just the prelaunch page. A two-line stacked
+ * mark, so it is sized by height and the width follows the 40.68 : 21.95 viewBox.
+ *
+ * The SVG carries fill="currentColor", so it takes the colour of whatever it sits in:
+ * ink on the paper top bar, white over the prelaunch hero. Never give it its own colour.
+ *
+ * The prelaunch stylesheet raises it to the design's 42px over the hero; this is the
+ * inner-page size, set against the top bar's 40px row.
+ */
+
+.logo {
+	display: block;
+	height: 30px;
+	width: auto;
+}
+
+@media (max-width: 900px) {
+	.logo {
+		height: 26px;
+	}
+}

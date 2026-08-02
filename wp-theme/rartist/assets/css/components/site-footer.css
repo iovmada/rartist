@@ -1,0 +1,46 @@
+/*
+ * Site footer — pairs with parts/shell/footer.php
+ * Frame Vtmzo: full-bleed ink band, 75 tall, 48px inline padding.
+ */
+
+.site-footer {
+	margin-top: var(--section-gap);
+	background: var(--ink);
+	color: var(--inverse);
+}
+
+.site-footer__inner {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 24px;
+	min-height: 75px;
+}
+
+.site-footer__links {
+	display: flex;
+	gap: 32px;
+	color: var(--inverse-soft);
+}
+
+.site-footer__links a:hover {
+	color: var(--inverse);
+}
+
+.site-footer__copyright {
+	color: var(--inverse-soft);
+}
+
+@media (max-width: 700px) {
+	.site-footer__inner {
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 14px;
+		padding-block: 26px;
+	}
+
+	.site-footer__links {
+		flex-wrap: wrap;
+		gap: 18px;
+	}
+}

@@ -1,0 +1,16 @@
+/*
+Theme Name: Rartist Studio
+Theme URI: https://rartist.ro
+Author: Rartist Studio
+Description: Catalogue theme for Rartist Studio — curated print editions. Artworks belong to one collection; collections and artworks are credited to one or more rartists.
+Version: 0.1.0
+Requires at least: 6.5
+Tested up to: 6.8
+Requires PHP: 8.1
+License: Proprietary
+Text Domain: rartist
+Tags: catalogue, art, editions
+
+This file carries the theme metadata only — it is never enqueued.
+Styles live in assets/css/, organised by component. See README.md.
+*/

@@ -1,0 +1,266 @@
+{
+    "key": "group_rartist_collection",
+    "title": "Collection",
+    "fields": [
+        {
+            "key": "field_rartist_col_number",
+            "label": "Number",
+            "name": "number",
+            "type": "text",
+            "instructions": "Two digits — 01 renders as COLLECTION 01.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "20",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": 2,
+            "placeholder": "01",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_rartist_col_featured",
+            "label": "Feature on the catalogue",
+            "name": "featured",
+            "type": "true_false",
+            "instructions": "Promotes this collection in the catalogue's index section, in the order below. Every collection appears on the Collections page whether or not this is on.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "40",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui": 1,
+            "ui_on_text": "",
+            "ui_off_text": ""
+        },
+        {
+            "key": "field_rartist_col_feature_order",
+            "label": "Feature order",
+            "name": "feature_order",
+            "type": "number",
+            "instructions": "1 shows first. Only affects the catalogue's featured pair.",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_rartist_col_featured",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "40",
+                "class": "",
+                "id": ""
+            },
+            "default_value": 1,
+            "min": 1,
+            "max": "",
+            "step": 1,
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_rartist_col_artists",
+            "label": "Rartists",
+            "name": "artists",
+            "type": "taxonomy",
+            "instructions": "Who made this collection. Every artwork in it inherits these credits unless the artwork names its own.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "taxonomy": "rartist",
+            "field_type": "multi_select",
+            "allow_null": 1,
+            "add_term": 0,
+            "save_terms": 0,
+            "load_terms": 0,
+            "return_format": "id",
+            "multiple": 1
+        },
+        {
+            "key": "field_rartist_col_hero_image",
+            "label": "Hero image",
+            "name": "hero_image",
+            "type": "image",
+            "instructions": "Wide interior or work shot. Upload at least 2000px wide.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "id",
+            "library": "all",
+            "preview_size": "medium",
+            "min_width": 1600,
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": "jpg,jpeg,png,webp"
+        },
+        {
+            "key": "field_rartist_col_hero_caption",
+            "label": "Hero caption",
+            "name": "hero_caption",
+            "type": "text",
+            "instructions": "One line under the hero, 40–60 characters.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": 90,
+            "placeholder": "Works that change as the light leaves the room.",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_rartist_col_intro_title",
+            "label": "Intro title",
+            "name": "intro_title",
+            "type": "text",
+            "instructions": "Display line, 24–44 characters.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": 70,
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_rartist_col_intro_body",
+            "label": "Intro body",
+            "name": "intro_body",
+            "type": "textarea",
+            "instructions": "Around 160–260 characters.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "rows": 3,
+            "new_lines": ""
+        },
+        {
+            "key": "field_rartist_col_details",
+            "label": "Details line",
+            "name": "details",
+            "type": "text",
+            "instructions": "Slash-separated production facts. Type them plainly — the page handles the spacing and capitals.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "Archival pigment prints / Numbered editions / Unframed",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_rartist_col_works_title",
+            "label": "Works title",
+            "name": "works_title",
+            "type": "text",
+            "instructions": "The display title above the works grid — the design uses \"The edition\" and \"Night editions\". 8–18 characters. Empty falls back to \"The edition\".",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": 30,
+            "placeholder": "The edition",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_rartist_col_quote",
+            "label": "Collector note",
+            "name": "collector_quote",
+            "type": "textarea",
+            "instructions": "The pull quote. Quotation marks are added by the page. Empty hides the whole band.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": 220,
+            "rows": 3,
+            "new_lines": ""
+        },
+        {
+            "key": "field_rartist_col_shipping_note",
+            "label": "Shipping note",
+            "name": "shipping_note",
+            "type": "textarea",
+            "instructions": "Two short lines beside the collector note.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": 90,
+            "rows": 2,
+            "new_lines": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "taxonomy",
+                "operator": "==",
+                "value": "collection"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "A collection page. The works grid, the artist block and the counts are all derived from the artworks assigned to this collection.",
+    "show_in_rest": 0,
+    "modified": 1785772800
+}

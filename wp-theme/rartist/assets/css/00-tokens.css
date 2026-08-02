@@ -1,0 +1,81 @@
+/*
+ * Design tokens — the single source of truth for colour, type and rhythm.
+ *
+ * Colours and font families mirror the Pencil document's variables exactly
+ * (surface / ink / ink-soft / inverse, font-display / font-body / font-caption).
+ * Everything else is measured off the 1440px frames.
+ *
+ * Display sizes are fluid: clamp(min, slope, design px) so the design value is
+ * reached exactly at 1440 and shrinks gracefully below it. Caption and body sizes
+ * are fixed — they are small already, and scaling them costs legibility.
+ */
+
+:root {
+	/* Palette — from the .pen variables */
+	--surface: #fcfaf7;
+	--ink: #000000;
+	--ink-soft: #666666;
+	--inverse: #ffffff;
+
+	/* Palette — measured off the frames */
+	--rule: #d8d4cd;          /* section rules, spec and accordion dividers */
+	--rule-soft: #ddd9d2;     /* the lighter rule under the top bar */
+	--border: #cfcbc4;        /* unselected size buttons */
+	--positive: #3f6848;      /* "IN STOCK" */
+	--inverse-soft: #ffffff99;/* footer secondary text */
+
+	/* Families */
+	--font-display: "Playfair Display", Georgia, serif;
+	--font-body: "Geist", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+	--font-caption: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+	/*
+	 * Display steps — every value is the design px at 1440, reached exactly there and
+	 * scaled down by the clamp below it. Named for the role each one plays, because the
+	 * frames use a dozen distinct sizes and numbers alone would be unreadable.
+	 */
+	--display-1: clamp(40px, 26.6px + 3.57vw, 78px);  /* artwork title */
+	--display-2: clamp(38px, 24.6px + 3.57vw, 76px);  /* big section title */
+	--display-3: clamp(34px, 25.9px + 2.16vw, 57px);  /* artist name, artwork page */
+	--display-4: clamp(32px, 23.5px + 2.25vw, 56px);  /* section title */
+	--display-5: clamp(28px, 23.1px + 1.31vw, 42px);  /* subsection title */
+	--display-price: clamp(26px, 23.2px + 0.75vw, 34px);
+
+	/* Page-scale display — catalogue and hero titles */
+	--display-catalogue: clamp(56px, 4.6px + 13.71vw, 202px);  /* ARTWORKS */
+	--display-page: clamp(52px, 6.2px + 12.21vw, 182px);       /* rartist name */
+	--display-index: clamp(50px, 5.6px + 11.83vw, 176px);      /* COLLECTIONS */
+	--display-collection: clamp(48px, 6.5px + 11.08vw, 166px); /* collection title */
+	--display-section-xl: clamp(40px, 11.1px + 7.7vw, 122px);  /* THE EDITION */
+	--display-section-l: clamp(38px, 12.6px + 6.76vw, 110px);  /* SELECTED WORKS */
+
+	/* Feature and copy display */
+	--display-feature-a: clamp(36px, 24.7px + 3vw, 68px);      /* first collection */
+	--display-feature-b: clamp(38px, 25px + 3.47vw, 75px);     /* second collection */
+	--display-artist-l: clamp(36px, 25.8px + 2.72vw, 65px);    /* artist, collection page */
+	--display-intro: clamp(30px, 21.9px + 2.16vw, 53px);
+	--display-cta: clamp(30px, 22.6px + 1.97vw, 51px);
+	--display-statement: clamp(24px, 19.4px + 1.22vw, 37px);
+	--display-quote: clamp(24px, 17.5px + 1.5vw, 34px);        /* collector note */
+	--display-quote-l: clamp(24px, 19.4px + 1.22vw, 37px);     /* rartist quote */
+
+	/* Body */
+	--body-lead: 16px;
+	--body: 15px;
+	--body-s: 14px;
+	--body-xs: 12px;
+
+	/* Caption (mono) */
+	--caption-wordmark: 14px;
+	--caption-nav: 11px;
+	--caption: 10px;
+	--caption-s: 9px;
+	--caption-xs: 8px;
+
+	/* Rhythm */
+	--gutter: clamp(20px, 3.33vw, 48px);
+	--page-max: 1440px;
+	--section-gap: clamp(56px, 6.7vw, 96px);
+	--rule-to-index: 29px;   /* rule → index label */
+	--index-to-title: 52px;  /* index label → display title */
+}

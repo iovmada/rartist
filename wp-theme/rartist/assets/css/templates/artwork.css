@@ -1,0 +1,174 @@
+/*
+ * Artwork detail — the only genuinely page-specific layout for single-artwork.php.
+ * Everything visual here is a measurement off frame kTNBO; anything reusable has
+ * already been factored into assets/css/components/.
+ */
+
+/* --- Hero --------------------------------------------------------------- */
+
+.artwork__breadcrumb {
+	margin-top: 34px;
+	letter-spacing: 0.222em; /* 2px at 9px */
+}
+
+.artwork__hero {
+	margin-top: 36px;
+}
+
+.artwork__figure {
+	margin: 0;
+	background: #efece6;
+}
+
+.artwork__image-note {
+	margin-top: 20px;
+	letter-spacing: 0.178em; /* 1.6px at 9px */
+}
+
+/* The right-hand panel sits 4px lower than the image in the frame. */
+.artwork__panel {
+	padding-top: 4px;
+}
+
+.artwork__plate-meta {
+	letter-spacing: 0.2em;
+}
+
+.artwork__title {
+	margin-top: 30px;
+}
+
+.artwork__artist-link {
+	display: inline-block;
+	margin-top: 22px;
+	letter-spacing: 0.18em;
+	border-bottom: 1px solid transparent;
+	transition: border-color 0.15s ease;
+}
+
+.artwork__artist-link:hover {
+	border-bottom-color: var(--ink);
+}
+
+.artwork__description {
+	margin-top: 56px;
+	max-width: 470px;
+}
+
+.artwork__price {
+	margin-top: 62px;
+}
+
+.artwork__sizes {
+	margin-top: 30px;
+}
+
+.artwork__reserve {
+	margin-top: 46px;
+	max-width: 470px;
+}
+
+.artwork__purchase-info {
+	margin-top: 41px;
+	max-width: 470px;
+}
+
+/* --- Story -------------------------------------------------------------- */
+
+.artwork__story-title {
+	max-width: 510px;
+}
+
+.artwork__story-body {
+	max-width: 480px;
+}
+
+.artwork__specs {
+	margin-top: 65px;
+}
+
+/* Story title and body share a baseline in the frame, so the right column does
+   not take the section's title offset. */
+.artwork__story .split--story > * {
+	margin-top: 0;
+}
+
+.artwork__story-copy {
+	margin-top: var(--index-to-title);
+}
+
+/* --- In situ ------------------------------------------------------------ */
+
+.artwork__situ-figure {
+	margin: 0;
+	overflow: hidden;
+	background: #efece6;
+	aspect-ratio: 860 / 610;
+}
+
+.artwork__situ-figure img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.artwork__situ-copy {
+	padding-top: 35px; /* the copy column starts 35px below the image */
+}
+
+.artwork__situ-label {
+	letter-spacing: 0.2em;
+}
+
+.artwork__situ-title {
+	margin-top: 38px;
+}
+
+.artwork__situ-body {
+	margin-top: 38px;
+}
+
+.artwork__situ-note {
+	margin-top: 40px;
+	line-height: 1.7;
+	letter-spacing: 0.133em;
+}
+
+/* --- Related ------------------------------------------------------------ */
+
+.artwork__related-head {
+	display: flex;
+	align-items: flex-end;
+	justify-content: space-between;
+	gap: 32px;
+}
+
+.artwork__related-title {
+	margin-top: 30px;
+}
+
+.artwork__related-row {
+	margin-top: 34px;
+}
+
+@media (max-width: 900px) {
+	.artwork__panel {
+		padding-top: 0;
+	}
+
+	.artwork__description,
+	.artwork__price,
+	.artwork__reserve,
+	.artwork__specs {
+		margin-top: 32px;
+	}
+
+	.artwork__situ-copy {
+		padding-top: 0;
+	}
+
+	.artwork__related-head {
+		flex-direction: column;
+		align-items: flex-start;
+	}
+}

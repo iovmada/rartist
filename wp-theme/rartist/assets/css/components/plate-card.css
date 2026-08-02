@@ -1,0 +1,52 @@
+/*
+ * Plate card — pairs with parts/ui/plate-card.php
+ *
+ * Used by every works grid: related works here, and the collection, rartist and
+ * catalogue grids later. Two variants:
+ *
+ *   default   natural aspect ratio — the plates are deliberately varied, and the
+ *             catalogue grid is composed around that
+ *   uniform   fixed 250 × 285 box with the image cropped to fill, which is how the
+ *             related-works row in frame kTNBO is drawn
+ */
+
+.plate-card {
+	display: block;
+}
+
+.plate-card__figure {
+	margin: 0;
+	overflow: hidden;
+	background: #efece6;
+}
+
+.plate-card__figure img {
+	width: 100%;
+	transition: opacity 0.2s ease;
+}
+
+.plate-card:hover .plate-card__figure img {
+	opacity: 0.9;
+}
+
+.plate-card--uniform .plate-card__figure {
+	aspect-ratio: 250 / 285;
+}
+
+.plate-card--uniform .plate-card__figure img {
+	height: 100%;
+	object-fit: cover;
+}
+
+.plate-card__title {
+	margin-top: 15px;
+}
+
+.plate-card__meta {
+	margin-top: 6px;
+	color: var(--ink-soft);
+}
+
+.plate-card--sold-out .plate-card__figure img {
+	opacity: 0.6;
+}

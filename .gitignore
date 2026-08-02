@@ -8,3 +8,7 @@
 
 # Node (not used today, but keeps stray installs out)
 node_modules/
+wp-local/
+
+# Local WordPress sandbox and hand-made archives
+*.zip

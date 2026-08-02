@@ -1,0 +1,77 @@
+/*
+ * Divided rows — pairs with parts/ui/spec-list.php and parts/ui/accordion.php
+ *
+ * Frames bA7vh (specifications, 38-tall rows) and xEfls (purchase information,
+ * 48-tall rows). Same construction: a top border on the list, a bottom border on
+ * each row, label left, value or control right.
+ */
+
+.rows {
+	border-top: 1px solid var(--rule);
+}
+
+.rows__item {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 24px;
+	border-bottom: 1px solid var(--rule);
+}
+
+.rows--specs .rows__item {
+	min-height: 38px;
+}
+
+.rows--specs .rows__label {
+	color: var(--ink-soft);
+}
+
+.rows--specs .rows__value {
+	text-align: right;
+}
+
+/* --- Accordion (native details/summary — no JavaScript) ----------------- */
+
+.rows--accordion .rows__item {
+	display: block;
+	min-height: 0;
+}
+
+.accordion__summary {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 24px;
+	min-height: 48px;
+	cursor: pointer;
+	list-style: none;
+}
+
+.accordion__summary::-webkit-details-marker {
+	display: none;
+}
+
+.accordion__sign {
+	font-family: var(--font-body);
+	font-size: 16px;
+	line-height: 1;
+	letter-spacing: 0;
+}
+
+/* The sign is a plus that becomes a minus, drawn from the same glyph slot. */
+.accordion__sign::after {
+	content: "+";
+}
+
+.rows__item[open] .accordion__sign::after {
+	content: "–";
+}
+
+.accordion__body {
+	padding-bottom: 20px;
+	max-width: 420px;
+	color: var(--ink-soft);
+	font-size: var(--body-s);
+	line-height: 1.6;
+	white-space: pre-line;
+}

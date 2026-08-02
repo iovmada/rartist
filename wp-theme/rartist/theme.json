@@ -1,0 +1,85 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/theme.json",
+	"version": 3,
+	"settings": {
+		"appearanceTools": false,
+		"useRootPaddingAwareAlignments": false,
+		"layout": {
+			"contentSize": "760px",
+			"wideSize": "1140px"
+		},
+		"color": {
+			"custom": false,
+			"customGradient": false,
+			"defaultPalette": false,
+			"defaultGradients": false,
+			"palette": [
+				{ "slug": "surface", "color": "#FCFAF7", "name": "Paper" },
+				{ "slug": "ink", "color": "#000000", "name": "Ink" },
+				{ "slug": "ink-soft", "color": "#666666", "name": "Ink soft" },
+				{ "slug": "inverse", "color": "#FFFFFF", "name": "White" },
+				{ "slug": "rule", "color": "#D8D4CD", "name": "Rule" }
+			]
+		},
+		"typography": {
+			"customFontSize": false,
+			"fluid": true,
+			"fontFamilies": [
+				{
+					"slug": "display",
+					"name": "Playfair Display",
+					"fontFamily": "\"Playfair Display\", Georgia, serif"
+				},
+				{
+					"slug": "body",
+					"name": "Geist",
+					"fontFamily": "\"Geist\", -apple-system, BlinkMacSystemFont, sans-serif"
+				},
+				{
+					"slug": "caption",
+					"name": "Geist Mono",
+					"fontFamily": "\"Geist Mono\", ui-monospace, Menlo, monospace"
+				}
+			],
+			"fontSizes": [
+				{ "slug": "small", "size": "13px", "name": "Small" },
+				{ "slug": "medium", "size": "15px", "name": "Medium" },
+				{ "slug": "large", "size": "16px", "name": "Large" },
+				{
+					"slug": "x-large",
+					"size": "32px",
+					"fluid": { "min": "26px", "max": "42px" },
+					"name": "Display"
+				}
+			]
+		},
+		"spacing": {
+			"units": [ "px", "rem", "%" ],
+			"blockGap": null
+		}
+	},
+	"styles": {
+		"color": {
+			"background": "var(--surface)",
+			"text": "var(--ink)"
+		},
+		"typography": {
+			"fontFamily": "var(--font-body)",
+			"fontSize": "15px",
+			"lineHeight": "1.65"
+		},
+		"elements": {
+			"heading": {
+				"typography": {
+					"fontFamily": "var(--font-display)",
+					"fontWeight": "400",
+					"lineHeight": "1.1"
+				}
+			},
+			"link": {
+				"color": { "text": "var(--ink)" },
+				"typography": { "textDecoration": "underline" }
+			}
+		}
+	}
+}

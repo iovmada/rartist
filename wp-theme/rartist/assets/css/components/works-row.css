@@ -1,0 +1,76 @@
+/*
+ * Works row — pairs with parts/section/works-row.php
+ *
+ * The four-up grid used by the collection page (frame kWI5J) and the rartist profile
+ * (RmliI). Plates sit at x 0 / 347 / 694 / 1041 in the 1344 content width — four
+ * ~285 columns with 62 gaps — and are top-aligned with deliberately unequal heights
+ * (360 / 430 / 380 / 430), so the row reads as composed rather than tabulated.
+ *
+ * Those four heights become an aspect-ratio cycle: any number of works flows through
+ * the same rhythm, and nothing has to be positioned per artwork in the admin.
+ */
+
+.works-row {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	column-gap: calc(100% * 62 / 1344);
+	row-gap: 56px;
+	align-items: start;
+}
+
+/* 285/360, 285/430, 285/380, 303/430 */
+.works-row > *:nth-child(4n + 1) .plate-card__figure {
+	aspect-ratio: 285 / 360;
+}
+
+.works-row > *:nth-child(4n + 2) .plate-card__figure {
+	aspect-ratio: 285 / 430;
+}
+
+.works-row > *:nth-child(4n + 3) .plate-card__figure {
+	aspect-ratio: 285 / 380;
+}
+
+.works-row > *:nth-child(4n) .plate-card__figure {
+	aspect-ratio: 303 / 430;
+}
+
+.works-row .plate-card__figure {
+	overflow: hidden;
+}
+
+.works-row .plate-card__figure img {
+	height: 100%;
+	object-fit: cover;
+}
+
+/* The meta block: plate number, title, then price or year. */
+.works-row .plate-card__number {
+	margin-top: 20px;
+	color: var(--ink-soft);
+	letter-spacing: 0.178em; /* 1.6px at 9px */
+}
+
+.works-row .plate-card__title {
+	margin-top: 10px;
+	font-size: 13px;
+}
+
+.works-row .plate-card__meta {
+	margin-top: 6px;
+	letter-spacing: 0.122em;
+}
+
+@media (max-width: 900px) {
+	.works-row {
+		grid-template-columns: repeat(2, 1fr);
+		column-gap: 24px;
+		row-gap: 40px;
+	}
+}
+
+@media (max-width: 520px) {
+	.works-row {
+		grid-template-columns: 1fr;
+	}
+}

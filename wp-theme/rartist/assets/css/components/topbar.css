@@ -1,0 +1,92 @@
+/*
+ * Top bar — pairs with parts/shell/topbar.php
+ *
+ * Frame AF73d: 1344 wide at y34, 40 tall, wordmark left / nav / bag right,
+ * with a 1px rule 22px below it.
+ */
+
+.topbar {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 24px;
+	min-height: 40px;
+	padding-top: 34px;
+}
+
+.topbar__wordmark {
+	flex: none;
+}
+
+.topbar__nav {
+	display: flex;
+	align-items: center;
+	gap: 38px;
+}
+
+.topbar__link {
+	color: var(--ink-soft);
+	transition: color 0.15s ease;
+}
+
+.topbar__link:hover,
+.topbar__link[aria-current],
+.topbar__link.is-active {
+	color: var(--ink);
+}
+
+/* The nav item that opens the panel carries an arrow that flips when open. */
+.topbar__toggle {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	color: var(--ink-soft);
+}
+
+.topbar__toggle[aria-expanded="true"],
+.topbar__toggle:hover {
+	color: var(--ink);
+}
+
+.topbar__toggle-arrow {
+	font-family: var(--font-body);
+	font-size: 12px;
+	letter-spacing: 0;
+	transition: transform 0.2s ease;
+}
+
+.topbar__toggle[aria-expanded="true"] .topbar__toggle-arrow {
+	transform: rotate(180deg);
+}
+
+.topbar__bag {
+	flex: none;
+}
+
+.topbar__rule {
+	margin-top: 22px;
+	border: 0;
+	border-top: 1px solid var(--rule-soft);
+}
+
+/* Mobile: the nav collapses into the panel, leaving wordmark + trigger. */
+.topbar__burger {
+	display: none;
+}
+
+@media (max-width: 900px) {
+	.topbar {
+		padding-top: 22px;
+	}
+
+	.topbar__nav,
+	.topbar__bag {
+		display: none;
+	}
+
+	.topbar__burger {
+		display: inline-flex;
+		align-items: center;
+		gap: 10px;
+	}
+}

@@ -1,0 +1,29 @@
+/*
+ * Underlined link with a trailing arrow — pairs with parts/ui/link-arrow.php
+ * Frames MReZm / u0wJW: 8px bottom padding, 1px ink underline, arrow at 16px.
+ */
+
+.link-arrow {
+	display: inline-flex;
+	align-items: center;
+	gap: 14px;
+	padding-bottom: 8px;
+	border-bottom: 1px solid var(--ink);
+}
+
+.link-arrow__arrow {
+	font-family: var(--font-body);
+	font-size: 16px;
+	line-height: 1;
+	letter-spacing: 0;
+	transition: transform 0.2s ease;
+}
+
+.link-arrow:hover .link-arrow__arrow {
+	transform: translate(3px, -3px);
+}
+
+/* The horizontal variant nudges sideways only. */
+.link-arrow--right:hover .link-arrow__arrow {
+	transform: translateX(4px);
+}

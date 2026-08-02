@@ -1,0 +1,63 @@
+/*
+ * Size selector — pairs with parts/ui/size-selector.php
+ * Frame zchnW: 36-tall buttons, 12/14 padding, 10px gap; selected is ink on ink.
+ *
+ * Built as real radio inputs so it works without JavaScript and announces itself
+ * to assistive technology; the JS only mirrors the price.
+ */
+
+.size-selector__label {
+	color: var(--ink-soft);
+	letter-spacing: 0.2em;
+}
+
+.size-selector__options {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+	margin-top: 16px;
+}
+
+.size-option {
+	position: relative;
+}
+
+.size-option__input {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	opacity: 0;
+	cursor: pointer;
+}
+
+.size-option__face {
+	display: flex;
+	align-items: center;
+	min-height: 36px;
+	padding: 12px 14px;
+	background: var(--surface);
+	border: 1px solid var(--border);
+	font-family: var(--font-caption);
+	font-size: var(--caption-s);
+	letter-spacing: 0.111em; /* 1px at 9px */
+	text-transform: uppercase;
+	line-height: 1;
+	transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.size-option__input:hover + .size-option__face {
+	border-color: var(--ink);
+}
+
+.size-option__input:checked + .size-option__face {
+	background: var(--ink);
+	border-color: var(--ink);
+	color: var(--inverse);
+}
+
+.size-option__input:focus-visible + .size-option__face {
+	outline: 1px solid var(--ink);
+	outline-offset: 3px;
+}

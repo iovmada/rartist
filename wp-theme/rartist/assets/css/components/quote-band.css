@@ -1,0 +1,68 @@
+/*
+ * Quote band — pairs with parts/section/quote-band.php
+ *
+ * Frames c2Du7Q (collector note: index left, quote centre, shipping note right) and
+ * wxBpW (rartist quote: one centred line). Both are 1344 × 220 with a hairline above
+ * and below, so they are one component with two arrangements.
+ */
+
+.quote-band {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 40px;
+	min-height: 220px;
+	border-top: 1px solid var(--rule);
+	border-bottom: 1px solid var(--rule);
+}
+
+.quote-band__index {
+	flex: none;
+	width: calc(100% * 220 / 1344);
+	color: var(--ink-soft);
+	letter-spacing: 0.222em;
+}
+
+.quote-band__quote {
+	font-family: var(--font-display);
+	font-size: var(--display-quote);
+	line-height: 1.2;
+	max-width: 690px;
+}
+
+.quote-band__note {
+	flex: none;
+	width: calc(100% * 210 / 1344);
+	text-align: right;
+	line-height: 1.8;
+	color: var(--ink-soft);
+	letter-spacing: 0.167em;
+	white-space: pre-line;
+}
+
+/* Centred variant — the rartist profile's pull quote. */
+.quote-band--centred {
+	justify-content: center;
+	text-align: center;
+}
+
+.quote-band--centred .quote-band__quote {
+	font-size: var(--display-quote-l);
+	max-width: 820px;
+}
+
+@media (max-width: 900px) {
+	.quote-band {
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 24px;
+		padding-block: 40px;
+		min-height: 0;
+	}
+
+	.quote-band__index,
+	.quote-band__note {
+		width: auto;
+		text-align: left;
+	}
+}

@@ -1,0 +1,203 @@
+/*
+ * Navigation panel — pairs with parts/shell/nav-panel.php
+ *
+ * One markup, two skins:
+ *   desktop  → frame tu30N, full-bleed panel, feature copy beside four option rows
+ *   ≤900px   → frame tlvLz, a 320-wide sheet with its own header and footer
+ */
+
+.nav-panel {
+	position: absolute;
+	inset-inline: 0;
+	z-index: 20;
+	background: var(--surface);
+	/*
+	 * Always ink on paper. The panel can open over the prelaunch page's dark hero, where
+	 * the header sets white text, and the panel must not inherit it.
+	 */
+	color: var(--ink);
+	border-top: 1px solid var(--ink);
+	border-bottom: 1px solid var(--ink);
+}
+
+.nav-panel__body {
+	display: grid;
+	grid-template-columns: 520fr 724fr;
+	column-gap: 7.44%; /* 100 of 1344 */
+	padding-block: 34px;
+}
+
+/* --- Feature column ----------------------------------------------------- */
+
+.nav-panel__eyebrow {
+	color: var(--ink-soft);
+	letter-spacing: 0.222em; /* 2px at 9px */
+	font-size: var(--caption-s);
+}
+
+.nav-panel__statement {
+	margin-top: 17px;
+	font-family: var(--font-display);
+	font-size: clamp(32px, 21.7px + 1.83vw, 48px);
+	line-height: 1.02;
+	letter-spacing: -0.021em;
+	white-space: pre-line;
+}
+
+.nav-panel__note {
+	margin-top: 24px;
+	max-width: 390px;
+	font-size: 13px;
+	line-height: 1.55;
+	color: var(--ink-soft);
+}
+
+/* --- Option rows -------------------------------------------------------- */
+
+.nav-panel__options {
+	display: flex;
+	flex-direction: column;
+}
+
+.nav-option {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 24px;
+	min-height: 62px;
+	padding-inline: 18px;
+	transition: background-color 0.15s ease;
+}
+
+.nav-option:hover,
+.nav-option:focus-visible {
+	background: #f1eee8;
+}
+
+.nav-option__labels {
+	display: flex;
+	align-items: baseline;
+	gap: 24px;
+}
+
+.nav-option__label {
+	font-size: var(--caption);
+	letter-spacing: 0.18em;
+}
+
+.nav-option__meta {
+	font-size: var(--caption-xs);
+	letter-spacing: 0.15em;
+	color: var(--ink-soft);
+}
+
+.nav-option__arrow {
+	font-family: var(--font-body);
+	font-size: 18px;
+	line-height: 1;
+	transition: transform 0.2s ease;
+}
+
+.nav-option:hover .nav-option__arrow {
+	transform: translateX(4px);
+}
+
+/* --- Footer strip ------------------------------------------------------- */
+
+.nav-panel__footer {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 24px;
+	min-height: 56px;
+	border-top: 1px solid var(--rule);
+	color: var(--ink-soft);
+}
+
+.nav-panel__footer-links {
+	display: flex;
+	gap: 28px;
+	color: var(--ink);
+}
+
+/* --- Compact sheet ------------------------------------------------------ */
+
+.nav-panel__sheet-head {
+	display: none;
+	align-items: center;
+	justify-content: space-between;
+	min-height: 70px;
+	padding-inline: 18px;
+	background: var(--ink);
+	color: var(--inverse);
+}
+
+.nav-panel__close {
+	font-family: var(--font-body);
+	font-size: 19px;
+	line-height: 1;
+	color: var(--inverse);
+}
+
+@media (max-width: 900px) {
+	.nav-panel {
+		position: fixed;
+		inset: 0 auto 0 0;
+		width: min(320px, 88vw);
+		overflow-y: auto;
+		border: 1px solid var(--ink);
+	}
+
+	.nav-panel__sheet-head {
+		display: flex;
+	}
+
+	.nav-panel__body {
+		display: block;
+		padding: 0;
+	}
+
+	.nav-panel__feature {
+		order: 2;
+		padding: 24px 18px;
+		border-top: 1px solid var(--rule);
+	}
+
+	.nav-panel__statement {
+		font-size: 30px;
+	}
+
+	.nav-option {
+		min-height: 64px;
+		border-bottom: 1px solid var(--rule);
+	}
+
+	.nav-option__labels {
+		flex-direction: column;
+		gap: 4px;
+	}
+
+	.nav-panel__footer {
+		padding: 14px 18px;
+		background: #f1eee8;
+		border-top: 0;
+	}
+
+	.nav-panel__footer-links {
+		gap: 16px;
+	}
+}
+
+/* The scrim only exists for the compact sheet. */
+.nav-scrim {
+	position: fixed;
+	inset: 0;
+	z-index: 19;
+	background: #0a0a0a66;
+}
+
+@media (min-width: 901px) {
+	.nav-scrim {
+		display: none;
+	}
+}

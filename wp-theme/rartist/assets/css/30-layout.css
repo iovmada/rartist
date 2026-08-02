@@ -1,0 +1,109 @@
+/*
+ * Layout primitives.
+ *
+ * Every asymmetric split in the design is expressed as fr columns in the ratio the
+ * frames use, with the gap and the empty right-hand margin as percentages of the
+ * 1344px content width. At 1440 the result is the design's exact pixel geometry;
+ * below that everything scales, then stacks at 900px.
+ */
+
+.container {
+	width: 100%;
+	max-width: var(--page-max);
+	margin-inline: auto;
+	padding-inline: var(--gutter);
+}
+
+/* A section opens with a hairline rule and an index label. */
+.section {
+	margin-top: var(--section-gap);
+}
+
+.section__head {
+	border-top: 1px solid var(--rule);
+	padding-top: var(--rule-to-index);
+}
+
+.section__title {
+	margin-top: var(--index-to-title);
+}
+
+/* --- Splits, in the frames' own ratios ---------------------------------- */
+
+/*
+ * Columns and gaps are percentages of the 1344px content width, written as the
+ * frame's own pixel numbers so they stay readable and auditable. Whatever the design
+ * leaves empty on the right simply stays empty — the columns do not stretch into it.
+ *
+ * Deliberately no padding on the grid: a percentage gap resolves against the content
+ * box, so any horizontal padding would silently shrink every column.
+ */
+
+.split {
+	display: grid;
+	align-items: start;
+}
+
+/* Artwork hero: 650 image / 122 gap / 470 panel (102 unused) */
+.split--hero {
+	grid-template-columns: calc(100% * 650 / 1344) calc(100% * 470 / 1344);
+	column-gap: calc(100% * 122 / 1344);
+}
+
+/* Story: 510 title / 132 gap / 550 body and specs (152 unused) */
+.split--story {
+	grid-template-columns: calc(100% * 510 / 1344) calc(100% * 550 / 1344);
+	column-gap: calc(100% * 132 / 1344);
+}
+
+/* In situ: 860 image / 102 gap / 310 copy (72 unused) */
+.split--situ {
+	grid-template-columns: calc(100% * 860 / 1344) calc(100% * 310 / 1344);
+	column-gap: calc(100% * 102 / 1344);
+}
+
+/* Artist: 390 portrait / 132 gap / 560 copy (262 unused) */
+.split--artist {
+	grid-template-columns: calc(100% * 390 / 1344) calc(100% * 560 / 1344);
+	column-gap: calc(100% * 132 / 1344);
+}
+
+@media (max-width: 900px) {
+	.split {
+		grid-template-columns: 1fr;
+		row-gap: 40px;
+	}
+}
+
+/* --- Four-column plate row --------------------------------------------- */
+
+.plate-row {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	column-gap: calc(100% * 114 / 1344); /* holds the design's 250px plate width */
+	align-items: start;
+}
+
+@media (max-width: 900px) {
+	.plate-row {
+		grid-template-columns: repeat(2, 1fr);
+		column-gap: 24px;
+		row-gap: 40px;
+	}
+}
+
+@media (max-width: 520px) {
+	.plate-row {
+		grid-template-columns: 1fr;
+	}
+}
+
+/* --- Helpers ------------------------------------------------------------ */
+
+.stack > * + * {
+	margin-top: var(--stack-gap, 16px);
+}
+
+.measure {
+	max-width: var(--measure, 480px);
+}

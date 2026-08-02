@@ -1,0 +1,602 @@
+{
+    "key": "group_rartist_artwork",
+    "title": "Artwork",
+    "fields": [
+        {
+            "key": "field_rartist_tab_plate",
+            "label": "Plate",
+            "name": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_rartist_plate_number",
+            "label": "Plate number",
+            "name": "plate_number",
+            "type": "number",
+            "instructions": "Just the number. 14 renders everywhere as PLATE 014.",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "25",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "min": 1,
+            "max": "",
+            "step": 1,
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_rartist_year",
+            "label": "Year",
+            "name": "year",
+            "type": "number",
+            "instructions": "Year the work was made.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "25",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "min": 1900,
+            "max": 2100,
+            "step": 1,
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_rartist_availability",
+            "label": "Availability",
+            "name": "availability",
+            "type": "select",
+            "instructions": "Drives the status dot and hides the reserve button when sold out.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "25",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "available": "Available",
+                "reserved": "Reserved",
+                "sold_out": "Sold out"
+            },
+            "default_value": "available",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_rartist_subject",
+            "label": "Subject",
+            "name": "subject",
+            "type": "taxonomy",
+            "instructions": "One subject per artwork — it drives the catalogue filters and the breadcrumb. Add a new one here and it appears in the filter row straight away.",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "25",
+                "class": "",
+                "id": ""
+            },
+            "taxonomy": "subject",
+            "field_type": "select",
+            "allow_null": 1,
+            "add_term": 1,
+            "save_terms": 1,
+            "load_terms": 1,
+            "return_format": "id",
+            "multiple": 0
+        },
+        {
+            "key": "field_rartist_collection",
+            "label": "Collection",
+            "name": "collection",
+            "type": "taxonomy",
+            "instructions": "An artwork belongs to exactly one collection. Not listed yet? Add it here, then give it its number, hero image, intro and credits under Artworks → Collections.",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "taxonomy": "collection",
+            "field_type": "select",
+            "allow_null": 1,
+            "add_term": 1,
+            "save_terms": 1,
+            "load_terms": 1,
+            "return_format": "id",
+            "multiple": 0
+        },
+        {
+            "key": "field_rartist_rartists",
+            "label": "Rartists",
+            "name": "rartist",
+            "type": "taxonomy",
+            "instructions": "Leave empty to credit the collection's rartists automatically. Set them here only for a plate that differs from its collection. A rartist added here still needs their portrait and biography under Artworks → Rartists.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "taxonomy": "rartist",
+            "field_type": "multi_select",
+            "allow_null": 1,
+            "add_term": 1,
+            "save_terms": 1,
+            "load_terms": 1,
+            "return_format": "id",
+            "multiple": 1
+        },
+        {
+            "key": "field_rartist_intro",
+            "label": "Description",
+            "name": "intro",
+            "type": "textarea",
+            "instructions": "Two sentences under the title. Around 180–240 characters sits best in the layout.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": 320,
+            "rows": 3,
+            "new_lines": ""
+        },
+        {
+            "key": "field_rartist_tab_print",
+            "label": "Print",
+            "name": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_rartist_medium",
+            "label": "Medium",
+            "name": "medium",
+            "type": "text",
+            "instructions": "e.g. Archival pigment print",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "Archival pigment print",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_rartist_paper",
+            "label": "Paper",
+            "name": "paper",
+            "type": "text",
+            "instructions": "e.g. 310 gsm cotton rag",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "310 gsm cotton rag",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_rartist_edition_total",
+            "label": "Edition size",
+            "name": "edition_total",
+            "type": "number",
+            "instructions": "50 renders as EDITION OF 50.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "33",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "min": 1,
+            "max": "",
+            "step": 1,
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_rartist_artist_proofs",
+            "label": "Artist proofs",
+            "name": "artist_proofs",
+            "type": "number",
+            "instructions": "Adds \"+ 5 artist proofs\" to the specification row.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "33",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "min": 0,
+            "max": "",
+            "step": 1,
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_rartist_signature",
+            "label": "Signature",
+            "name": "signature",
+            "type": "text",
+            "instructions": "e.g. Signed & numbered",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "34",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "Signed & numbered",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_rartist_tab_sizes",
+            "label": "Sizes & price",
+            "name": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_rartist_sizes_message",
+            "label": "",
+            "name": "",
+            "type": "message",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "Three size slots, matching the design's selector. Fill as many as this plate offers — empty slots disappear from the page. The first filled size is the price shown in the catalogue and the largest is used for the in-situ caption.",
+            "new_lines": "wpautop",
+            "esc_html": 0
+        },
+        {
+            "key": "field_rartist_size_1_label",
+            "label": "Size 1",
+            "name": "size_1_label",
+            "type": "text",
+            "instructions": "e.g. 70 × 85 CM",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "35",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": 24,
+            "placeholder": "70 × 85 CM",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_rartist_size_1_price",
+            "label": "Price 1",
+            "name": "size_1_price",
+            "type": "number",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "15",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "min": 0,
+            "max": "",
+            "step": 1,
+            "prepend": "€",
+            "append": ""
+        },
+        {
+            "key": "field_rartist_size_2_label",
+            "label": "Size 2",
+            "name": "size_2_label",
+            "type": "text",
+            "instructions": "e.g. 100 × 121 CM",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "35",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": 24,
+            "placeholder": "100 × 121 CM",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_rartist_size_2_price",
+            "label": "Price 2",
+            "name": "size_2_price",
+            "type": "number",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "15",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "min": 0,
+            "max": "",
+            "step": 1,
+            "prepend": "€",
+            "append": ""
+        },
+        {
+            "key": "field_rartist_size_3_label",
+            "label": "Size 3",
+            "name": "size_3_label",
+            "type": "text",
+            "instructions": "e.g. 140 × 170 CM",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "35",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": 24,
+            "placeholder": "140 × 170 CM",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_rartist_size_3_price",
+            "label": "Price 3",
+            "name": "size_3_price",
+            "type": "number",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "15",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "min": 0,
+            "max": "",
+            "step": 1,
+            "prepend": "€",
+            "append": ""
+        },
+        {
+            "key": "field_rartist_tab_story",
+            "label": "Story",
+            "name": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_rartist_story_title",
+            "label": "Story title",
+            "name": "story_title",
+            "type": "text",
+            "instructions": "One display line, 30–48 characters. Leave empty to omit the whole story section.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": 70,
+            "placeholder": "A still life with nothing still about it.",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_rartist_story_body",
+            "label": "Story body",
+            "name": "story_body",
+            "type": "textarea",
+            "instructions": "Around 300–420 characters.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "rows": 5,
+            "new_lines": ""
+        },
+        {
+            "key": "field_rartist_tab_situ",
+            "label": "In situ",
+            "name": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_rartist_in_situ_image",
+            "label": "Room image",
+            "name": "in_situ_image",
+            "type": "image",
+            "instructions": "The work hanging in a room. No image means the whole in-situ section is skipped.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "id",
+            "library": "all",
+            "preview_size": "medium",
+            "min_width": 1200,
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": "jpg,jpeg,png,webp"
+        },
+        {
+            "key": "field_rartist_in_situ_title",
+            "label": "In-situ title",
+            "name": "in_situ_title",
+            "type": "text",
+            "instructions": "One display line, 24–40 characters.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": 60,
+            "placeholder": "Built to hold a wall, not fill it.",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_rartist_in_situ_body",
+            "label": "In-situ body",
+            "name": "in_situ_body",
+            "type": "textarea",
+            "instructions": "Around 120–180 characters.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "rows": 3,
+            "new_lines": ""
+        },
+        {
+            "key": "field_rartist_styling_note",
+            "label": "Styling note",
+            "name": "styling_note",
+            "type": "textarea",
+            "instructions": "The small note under the in-situ copy. Around 90–140 characters.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "rows": 2,
+            "new_lines": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "artwork"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "Everything the artwork page and the catalogue card need. Derived on output: PLATE 014, EDITION OF 50, the image caption and the in-situ size label.",
+    "show_in_rest": 0,
+    "modified": 1785772800
+}
