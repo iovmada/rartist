@@ -37,6 +37,8 @@ function rartist_rartist_view( $term ): ?array {
 		'discipline_line'  => rartist_meta_line( array( $discipline, $location ) ),
 		'statement'        => (string) rartist_term_field( 'statement', $id ),
 		'portrait'         => (int) rartist_term_field( 'portrait', $id, 0 ),
+		// A dedicated square headshot for the nav; falls back to cropping the portrait.
+		'avatar'           => (int) rartist_term_field( 'avatar', $id, 0 ) ?: (int) rartist_term_field( 'portrait', $id, 0 ),
 		'portrait_caption' => (string) rartist_term_field( 'portrait_caption', $id ),
 		'studio_image'     => (int) rartist_term_field( 'studio_image', $id, 0 ),
 		'bio_title'        => (string) rartist_term_field( 'bio_title', $id ),

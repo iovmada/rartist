@@ -10,7 +10,11 @@
             "instructions": "Two digits — 01 renders as CURATED RARTIST / 01.",
             "required": 0,
             "conditional_logic": 0,
-            "wrapper": { "width": "20", "class": "", "id": "" },
+            "wrapper": {
+                "width": "20",
+                "class": "",
+                "id": ""
+            },
             "default_value": "",
             "maxlength": 2,
             "placeholder": "01",
@@ -25,7 +29,11 @@
             "instructions": "One or two words, slash-separated for more: Painter / Printmaker.",
             "required": 0,
             "conditional_logic": 0,
-            "wrapper": { "width": "40", "class": "", "id": "" },
+            "wrapper": {
+                "width": "40",
+                "class": "",
+                "id": ""
+            },
             "default_value": "",
             "maxlength": "",
             "placeholder": "Painter / Printmaker",
@@ -40,7 +48,11 @@
             "instructions": "City, or city and country: Berlin, DE.",
             "required": 0,
             "conditional_logic": 0,
-            "wrapper": { "width": "40", "class": "", "id": "" },
+            "wrapper": {
+                "width": "40",
+                "class": "",
+                "id": ""
+            },
             "default_value": "",
             "maxlength": "",
             "placeholder": "Barcelona",
@@ -55,11 +67,39 @@
             "instructions": "The large quote in the profile hero. Quotation marks are added by the page. 80–130 characters.",
             "required": 0,
             "conditional_logic": 0,
-            "wrapper": { "width": "", "class": "", "id": "" },
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
             "default_value": "",
             "maxlength": 180,
             "rows": 2,
             "new_lines": ""
+        },
+        {
+            "key": "field_rartist_art_avatar",
+            "label": "Avatar",
+            "name": "avatar",
+            "type": "image",
+            "instructions": "Small square headshot for the navigation menu, 300×300 or larger. Leave empty and the portrait below is cropped instead — which works for a headshot but not for a wide studio shot.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "id",
+            "library": "all",
+            "preview_size": "thumbnail",
+            "min_width": 300,
+            "min_height": 300,
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": "jpg,jpeg,png,webp"
         },
         {
             "key": "field_rartist_art_portrait",
@@ -69,7 +109,11 @@
             "instructions": "Upright portrait, at least 1000px wide. Also used on collection and artwork pages.",
             "required": 0,
             "conditional_logic": 0,
-            "wrapper": { "width": "50", "class": "", "id": "" },
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
             "return_format": "id",
             "library": "all",
             "preview_size": "medium",
@@ -89,7 +133,11 @@
             "instructions": "Where and when: Mara Vell in her Poblenou studio / 2026.",
             "required": 0,
             "conditional_logic": 0,
-            "wrapper": { "width": "50", "class": "", "id": "" },
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
             "default_value": "",
             "maxlength": "",
             "prepend": "",
@@ -103,7 +151,11 @@
             "instructions": "Process or studio shot beside the biography. Empty leaves the biography full width.",
             "required": 0,
             "conditional_logic": 0,
-            "wrapper": { "width": "", "class": "", "id": "" },
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
             "return_format": "id",
             "library": "all",
             "preview_size": "medium",
@@ -123,7 +175,11 @@
             "instructions": "Display line, 24–44 characters.",
             "required": 0,
             "conditional_logic": 0,
-            "wrapper": { "width": "", "class": "", "id": "" },
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
             "default_value": "",
             "maxlength": 70,
             "prepend": "",
@@ -137,7 +193,11 @@
             "instructions": "Around 180–260 characters.",
             "required": 0,
             "conditional_logic": 0,
-            "wrapper": { "width": "", "class": "", "id": "" },
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
             "default_value": "",
             "maxlength": "",
             "rows": 3,
@@ -151,7 +211,11 @@
             "instructions": "Optional. Around 180–320 characters.",
             "required": 0,
             "conditional_logic": 0,
-            "wrapper": { "width": "", "class": "", "id": "" },
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
             "default_value": "",
             "maxlength": "",
             "rows": 4,
@@ -165,7 +229,11 @@
             "instructions": "Born and based, slash-separated: B. 1984, Valencia / Lives & works in Barcelona.",
             "required": 0,
             "conditional_logic": 0,
-            "wrapper": { "width": "", "class": "", "id": "" },
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
             "default_value": "",
             "maxlength": "",
             "prepend": "",
@@ -179,7 +247,11 @@
             "instructions": "The wide quote band lower on the profile. Empty hides the band. 90–150 characters.",
             "required": 0,
             "conditional_logic": 0,
-            "wrapper": { "width": "", "class": "", "id": "" },
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
             "default_value": "",
             "maxlength": 200,
             "rows": 3,

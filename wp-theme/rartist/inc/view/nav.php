@@ -121,6 +121,11 @@ function rartist_rartist_nav_items(): array {
 			'url'     => $artist['url'],
 			'depth'   => 0,
 			'current' => $queried === $artist['id'],
+			// The avatar field, or the portrait cropped, beside the name.
+			'avatar'  => $artist['avatar'],
+			// Stands in for a portrait that has not been uploaded yet, so the rows
+			// keep their alignment instead of jumping left.
+			'initial' => mb_substr( $artist['name'], 0, 1 ),
 		);
 	}
 

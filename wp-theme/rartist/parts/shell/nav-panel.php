@@ -49,15 +49,39 @@ if ( empty( $rartist_items ) ) {
 
 			<div class="nav-panel__options">
 				<?php foreach ( $rartist_items as $rartist_item ) : ?>
+					<?php $rartist_has_avatar = array_key_exists( 'avatar', $rartist_item ); ?>
 					<a
-						class="nav-option<?php echo empty( $rartist_item['depth'] ) ? '' : ' nav-option--child'; ?>"
+						class="nav-option<?php echo empty( $rartist_item['depth'] ) ? '' : ' nav-option--child'; ?><?php echo $rartist_has_avatar ? ' nav-option--with-avatar' : ''; ?>"
 						href="<?php echo esc_url( $rartist_item['url'] ); ?>"
 						<?php echo empty( $rartist_item['current'] ) ? '' : 'aria-current="page"'; ?>
 					>
-						<span class="nav-option__labels">
-							<span class="nav-option__label t-meta"><?php echo esc_html( $rartist_item['label'] ); ?></span>
-							<span class="nav-option__meta t-nano"><?php echo esc_html( $rartist_item['meta'] ); ?></span>
+						<span class="nav-option__lead">
+							<?php if ( $rartist_has_avatar ) : ?>
+								<span class="nav-option__avatar" aria-hidden="true">
+									<?php
+									if ( $rartist_item['avatar'] ) {
+										echo wp_get_attachment_image(
+											$rartist_item['avatar'],
+											'thumbnail',
+											false,
+											array(
+												'alt'     => '',
+												'loading' => 'lazy',
+											)
+										);
+									} else {
+										echo '<span class="nav-option__initial">' . esc_html( $rartist_item['initial'] ?? '' ) . '</span>';
+									}
+									?>
+								</span>
+							<?php endif; ?>
+
+							<span class="nav-option__labels">
+								<span class="nav-option__label t-meta"><?php echo esc_html( $rartist_item['label'] ); ?></span>
+								<span class="nav-option__meta t-nano"><?php echo esc_html( $rartist_item['meta'] ); ?></span>
+							</span>
 						</span>
+
 						<span class="nav-option__arrow" aria-hidden="true">&rarr;</span>
 					</a>
 				<?php endforeach; ?>
