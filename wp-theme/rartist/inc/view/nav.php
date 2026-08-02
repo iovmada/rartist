@@ -102,30 +102,9 @@ function rartist_collection_nav_items(): array {
  */
 function rartist_rartist_nav_items(): array {
 	$queried = is_tax( 'rartist' ) ? (int) get_queried_object_id() : 0;
+	$rows    = array();
 
-	$terms = get_terms(
-		array(
-			'taxonomy'   => 'rartist',
-			'hide_empty' => false,
-			'meta_key'   => 'number',
-			'orderby'    => 'meta_value',
-			'order'      => 'ASC',
-		)
-	);
-
-	if ( is_wp_error( $terms ) || empty( $terms ) ) {
-		return array();
-	}
-
-	$rows = array();
-
-	foreach ( $terms as $term ) {
-		$artist = rartist_rartist_view( $term );
-
-		if ( ! $artist ) {
-			continue;
-		}
-
+	foreach ( rartist_curated_rartists() as $artist ) {
 		$meta = $artist['discipline_line'];
 
 		if ( '' === $meta ) {

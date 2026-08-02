@@ -49,6 +49,33 @@ function rartist_rartist_view( $term ): ?array {
 }
 
 /**
+ * The curated rartists: those with at least one published artwork, in numbered order.
+ *
+ * A rartist term with no works is someone half entered, or a credit typed and then
+ * moved — not an artist the studio is showing. The navigation dropdown and the rartists
+ * index both read this, so the two can never disagree about who is on the site.
+ *
+ * @return array<int,array<string,mixed>>
+ */
+function rartist_curated_rartists(): array {
+	$terms = get_terms(
+		array(
+			'taxonomy'   => 'rartist',
+			'hide_empty' => true,
+			'meta_key'   => 'number',
+			'orderby'    => 'meta_value',
+			'order'      => 'ASC',
+		)
+	);
+
+	if ( is_wp_error( $terms ) || empty( $terms ) ) {
+		return array();
+	}
+
+	return array_values( array_filter( array_map( 'rartist_rartist_view', $terms ) ) );
+}
+
+/**
  * Artwork views credited to a rartist, in curator's order.
  *
  * @return array<int,array<string,mixed>>

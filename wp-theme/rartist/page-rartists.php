@@ -18,17 +18,8 @@ get_header();
 
 the_post();
 
-$terms = get_terms(
-	array(
-		'taxonomy'   => 'rartist',
-		'hide_empty' => false,
-		'meta_key'   => 'number',
-		'orderby'    => 'meta_value',
-		'order'      => 'ASC',
-	)
-);
-
-$artists = is_wp_error( $terms ) ? array() : array_values( array_filter( array_map( 'rartist_rartist_view', $terms ) ) );
+// The curated ones only — the same list the navigation dropdown shows.
+$artists = rartist_curated_rartists();
 ?>
 
 <div class="catalogue">
