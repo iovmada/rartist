@@ -10,6 +10,7 @@
   --ink: #000000;
   --muted: #666666;
   --night: #0a0a0a;
+  --rule: #0000001a;
 
   --on-night: #ffffff;
   --on-night-70: #ffffffb3;
@@ -25,6 +26,7 @@
   /* Display sizes are viewport-relative so the headlines keep the
      same intentional bleed past the edges at every width.
      406px / 1440px design width = 28.194vw, etc. */
+  --fs-lead: 14.514vw;
   --fs-hero: 28.194vw;
   --fs-statement: 13.194vw;
   --fs-collection: 13.056vw;
@@ -113,6 +115,12 @@ a {
   white-space: nowrap;
 }
 
+.display--lead {
+  font-size: var(--fs-lead);
+  line-height: 1;
+  letter-spacing: -0.021em;
+}
+
 .display--hero {
   font-size: var(--fs-hero);
   line-height: 1;
@@ -179,11 +187,115 @@ a {
   outline-offset: 4px;
 }
 
+/* ── Lead ───────────────────────────────────── */
+/* The shirt programme opens the page. Deliberately paper and
+   typographic: it carries no photograph, so the dark hero below is
+   still the first image you meet. */
+.lead {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding-bottom: 170px;
+  width: 100%;
+  background-color: var(--paper);
+}
+
+.lead__eyebrow-row {
+  display: flex;
+  justify-content: center;
+  padding: 120px var(--gutter) 0;
+}
+
+.lead__eyebrow {
+  color: var(--muted);
+  letter-spacing: 3px;
+}
+
+.lead__headline-row {
+  display: flex;
+  justify-content: center;
+  padding-top: 44px;
+}
+
+.lead__statement-row {
+  display: flex;
+  justify-content: center;
+  padding: 54px var(--gutter) 0;
+}
+
+.lead__statement {
+  width: 620px;
+  max-width: 100%;
+  font-size: 17px;
+  line-height: 27px;
+  text-align: center;
+}
+
+/* ── Drops ─────────────────────────────────── */
+.drops {
+  display: flex;
+  flex-direction: column;
+  padding: 130px var(--gutter) 0;
+  width: 100%;
+}
+
+.drops__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 24px;
+  margin: 0;
+  padding-bottom: 20px;
+}
+
+.drops__head h2 {
+  margin: 0;
+  font-weight: 400;
+}
+
+.drops__list {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--rule);
+}
+
+/* Five columns at the design width; the name takes whatever the fixed
+   meta columns leave. */
+.drop {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 170px 140px 170px 150px;
+  align-items: baseline;
+  gap: 24px;
+  padding: 26px 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.drop__name {
+  font-size: 19px;
+  line-height: normal;
+}
+
+.drop__status {
+  text-align: right;
+}
+
+.drops__cta {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 24px;
+  padding-top: 26px;
+}
+
 /* ── Hero ─────────────────────────────────────────────────── */
 .hero {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  /* The bar used to occupy the top of this box and space-between put the
+     statement a little under half way down what was left. Without the bar
+     the padding has to stand in for it, or the statement rides the edge. */
+  padding-top: 250px;
   height: 880px;
   width: 100%;
   overflow: hidden;
@@ -195,7 +307,7 @@ a {
   background-size: 100% 100%, 100% 100%, cover;
 }
 
-.hero__bar {
+.lead__bar {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -203,14 +315,14 @@ a {
   padding: 36px var(--gutter);
 }
 
-.hero__logo {
+.lead__logo {
   display: block;
   flex-shrink: 0;
   transition: opacity 0.25s ease;
 }
 
-.hero__logo:hover,
-.hero__logo:focus-visible {
+.lead__logo:hover,
+.lead__logo:focus-visible {
   opacity: 0.7;
 }
 
@@ -222,8 +334,8 @@ a {
   width: auto;
 }
 
-.hero__status {
-  color: var(--on-night-70);
+.lead__status {
+  color: var(--muted);
   font-family: var(--font-mono);
   font-size: 12px;
   letter-spacing: 2.5px;
@@ -615,9 +727,50 @@ a {
   }
 
   .hero {
+    padding-top: 150px;
     height: auto;
     min-height: 680px;
     gap: 72px;
+  }
+
+  .lead {
+    padding-bottom: 130px;
+  }
+
+  .lead__eyebrow-row {
+    padding-top: 90px;
+  }
+
+  .lead__statement-row {
+    padding-top: 44px;
+  }
+
+  .drops {
+    padding-top: 100px;
+  }
+
+  /* Three lines per drop rather than five fixed columns: the name over a
+     two-up meta block. */
+  .drop {
+    grid-template-columns: minmax(0, 1fr) auto;
+    column-gap: 20px;
+    row-gap: 12px;
+    padding: 22px 0;
+  }
+
+  .drop__name {
+    grid-column: 1 / -1;
+  }
+
+  .drop__city,
+  .drop__edition {
+    grid-column: 1;
+  }
+
+  .drop__date,
+  .drop__status {
+    grid-column: 2;
+    text-align: right;
   }
 
   .statement {
@@ -721,13 +874,64 @@ a {
   /* The hero should own the first screen. svh keeps it stable while
      mobile Safari's toolbars collapse; vh is the fallback. */
   .hero {
+    padding-top: 96px;
     height: auto;
     min-height: 600px;
     min-height: 100svh;
     gap: 56px;
   }
 
-  .hero__bar {
+  .lead {
+    padding-bottom: 96px;
+  }
+
+  .lead__eyebrow-row {
+    padding-top: 64px;
+  }
+
+  .lead__eyebrow {
+    white-space: normal;
+    letter-spacing: 2px;
+    line-height: 20px;
+    text-align: center;
+  }
+
+  .lead__headline-row {
+    padding-top: 28px;
+  }
+
+  .lead__statement-row {
+    padding-top: 32px;
+  }
+
+  .lead__statement {
+    font-size: 16px;
+    line-height: 26px;
+  }
+
+  .drops {
+    padding-top: 72px;
+  }
+
+  .drops__head,
+  .drops__cta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .drops__head .mono,
+  .drops__cta .mono {
+    white-space: normal;
+  }
+
+  .drops__cta .link {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+  }
+
+  .lead__bar {
     padding: 20px var(--gutter);
     gap: 16px;
   }
@@ -736,7 +940,7 @@ a {
     height: 30px;
   }
 
-  .hero__status {
+  .lead__status {
     font-size: 10px;
     letter-spacing: 1.6px;
   }
@@ -884,6 +1088,7 @@ a {
     height: auto;
     min-height: 0;
     gap: 28px;
+    padding-top: 48px;
     padding-bottom: 8px;
   }
 
@@ -902,8 +1107,12 @@ a {
     letter-spacing: 1.8px;
   }
 
-  .hero__status {
+  .lead__status {
     letter-spacing: 1.2px;
+  }
+
+  .lead__eyebrow {
+    letter-spacing: 1.4px;
   }
 
   .signup__eyebrow {
