@@ -62,3 +62,11 @@ edges at every viewport width. The `px` values from the design map as
 
 The invite form validates and confirms client-side only — no endpoint. Point
 `js/main.js` at a real list provider when there is one.
+
+## Worn Editions gallery
+
+The “Art, worn out.” module follows the [shirt gallery design](https://app.pen.dev/s/PptKjI8-3HERwtTpGRSf-s69O2mizROCwCaAKx3SVJA), frame `HO2ev`. It sits between the Worn Editions introduction and upcoming batches. Its scoped styles and dependency-free script live in `css/worn-editions.css` and `js/worn-editions.js`. Typography reuses the site’s font tokens: Playfair Display for the heading, Geist for body and edition text, and Geist Mono for labels and captions.
+
+The gallery contains five concept slides: the two original design images and three Adobe Firefly scenes (gallery wall, printmaker’s table and studio display), generated using the original shirt as a reference. Arrows loop; progress buttons, keyboard arrows, Home/End and native touch scrolling update the caption and counter. Reduced motion is respected. Without JavaScript, images remain horizontally scrollable with individual captions.
+
+To add a static slide, add a `.worn-gallery__slide` figure with `data-title` and `data-details`, plus its matching progress button. The WordPress copy uses the same CSS and JS; keep both copies in sync when changing the module.

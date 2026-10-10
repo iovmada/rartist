@@ -44,6 +44,14 @@ $rartist_email = rartist_studio_value( 'enquiry_email' );
 		</div>
 	</header>
 
+	<?php
+	get_template_part(
+		'parts/section/worn-editions',
+		null,
+		array( 'items' => rartist_worn_editions(), 'email' => $rartist_email )
+	);
+	?>
+
 	<?php /* ---------- Statement ---------- */ ?>
 	<section class="statement" aria-labelledby="statement-headline">
 		<div class="statement__headline-row">

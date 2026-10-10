@@ -122,3 +122,53 @@ function rartist_page_url( string $slug, string $fallback = '#' ): string {
 
 	return $page ? (string) get_permalink( $page ) : $fallback;
 }
+
+/**
+ * Worn Editions concept gallery — two design images and three Adobe Firefly scenes.
+ * The filter can supply further editions without changing the section or its script.
+ *
+ * @return array<int,array<string,string>>
+ */
+function rartist_worn_editions(): array {
+	return apply_filters(
+		'rartist_worn_editions',
+		array(
+			array(
+				'title'   => __( 'Studio edition', 'rartist' ),
+				'details' => __( 'SCREENPRINT ON COTTON / CONCEPT PREVIEW', 'rartist' ),
+				'image'   => RARTIST_URI . '/assets/img/worn-studio.jpg',
+				'alt'	 => __( 'Back of a cotton shirt with a blue abstract print, worn in an artist’s studio', 'rartist' ),
+			),
+			array(
+				'title'   => __( 'Print detail', 'rartist' ),
+				'details' => __( 'INK AND TEXTURE / CONCEPT PREVIEW', 'rartist' ),
+				'image'   => RARTIST_URI . '/assets/img/worn-detail.jpg',
+				'alt'	 => __( 'Close-up of blue screenprinted artwork and the texture of a cotton shirt', 'rartist' ),
+			),
+			array(
+				'title'   => __( 'Gallery wall edition', 'rartist' ),
+				'details' => __( 'SCREENPRINT ON COTTON / CONCEPT PREVIEW', 'rartist' ),
+				'image'   => RARTIST_URI . '/assets/img/worn-gallery-wall.png',
+				'alt'     => __( 'Off-white cotton shirt with blue and black abstract artwork hanging against a warm plaster studio wall', 'rartist' ),
+				'width'   => 2048,
+				'height'  => 1152,
+			),
+			array(
+				'title'   => __( 'Printmaker’s table', 'rartist' ),
+				'details' => __( 'SCREENPRINT ON COTTON / CONCEPT PREVIEW', 'rartist' ),
+				'image'   => RARTIST_URI . '/assets/img/worn-printmakers-table.png',
+				'alt'     => __( 'Off-white cotton shirt with blue and black abstract artwork laid on an oak printmaker’s table', 'rartist' ),
+				'width'   => 2048,
+				'height'  => 1152,
+			),
+			array(
+				'title'   => __( 'Studio display', 'rartist' ),
+				'details' => __( 'SCREENPRINT ON COTTON / CONCEPT PREVIEW', 'rartist' ),
+				'image'   => RARTIST_URI . '/assets/img/worn-studio-display.png',
+				'alt'     => __( 'Off-white cotton shirt with blue and black abstract artwork displayed on a wooden studio bench', 'rartist' ),
+				'width'   => 2048,
+				'height'  => 1152,
+			),
+		)
+	);
+}

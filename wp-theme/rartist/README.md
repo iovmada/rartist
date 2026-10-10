@@ -271,3 +271,9 @@ the launch calls for.
 
 The collection page's artist block and the rartist page's featured-collection block both
 assume a single relation. Multi-artist and multi-collection variants need a design decision.
+
+### Worn Editions homepage gallery
+
+`parts/section/worn-editions.php` renders the [shirt gallery design](https://app.pen.dev/s/PptKjI8-3HERwtTpGRSf-s69O2mizROCwCaAKx3SVJA), frame `HO2ev`, below the prelaunch hero. The view function `rartist_worn_editions()` in `inc/view/globals.php` supplies five concept images: two from the design and three Adobe Firefly studio scenes. Its `rartist_worn_editions` filter accepts a list of `{title, details, image, alt}` arrays (with optional `width` and `height`) for further editions; the caption, counter and progress indicators follow the actual list size. An empty list omits the section; one slide hides navigation.
+
+The module's CSS and vanilla JS load only on the prelaunch homepage. Typography uses the existing site font tokens and self-hosted Playfair Display, Geist and Geist Mono fonts; the module adds no font assets or font stylesheet. It supports arrows, looping, keyboard navigation, native touch scrolling and reduced motion, with a scrollable image-and-caption fallback without JavaScript. The collaboration link uses the studio enquiry email. Styles and JS also exist in the static site; keep both copies in sync.

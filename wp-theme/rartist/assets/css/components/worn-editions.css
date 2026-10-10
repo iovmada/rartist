@@ -1,0 +1,140 @@
+/* Worn Editions — pen.dev frame HO2ev. Shared with the WordPress component. */
+.worn-gallery {
+  --worn-paper: #f9f8f4;
+  --worn-ink: #161616;
+  --worn-muted: #55544f;
+  --worn-rule: #b9b8b1;
+  --worn-progress: #dad9d2;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  min-width: 0;
+  width: 100%;
+  padding: 48px clamp(24px, 3.888889vw, 80px);
+  background: var(--worn-paper);
+  color: var(--worn-ink);
+  font: 400 16px/1.5 var(--font-body);
+}
+.worn-gallery *, .worn-gallery *::before, .worn-gallery *::after { box-sizing: border-box; }
+.worn-gallery p, .worn-gallery h2, .worn-gallery figure { margin: 0; }
+.worn-gallery__heading, .worn-gallery__footer, .worn-gallery__collaboration {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+}
+.worn-gallery__heading { align-items: flex-end; }
+.worn-gallery__eyebrow {
+  margin-bottom: 12px !important;
+  color: #65645f;
+  font: 400 12px/normal var(--font-mono, var(--font-caption));
+  letter-spacing: 2px;
+}
+.worn-gallery__title {
+  color: var(--worn-ink);
+  font: 400 76px/1.05 var(--font-display);
+  letter-spacing: 0;
+}
+.worn-gallery__intro, .worn-gallery__collaboration p { color: var(--worn-muted); }
+.worn-gallery__viewport {
+  display: flex;
+  gap: 24px;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  /* Leave room to align the last slide with the first. */
+  padding-right: 24.698795%;
+}
+.worn-gallery__viewport::-webkit-scrollbar { display: none; }
+.worn-gallery__slide {
+  flex: 0 0 100%;
+  min-width: 0;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+.worn-gallery__image {
+  display: block;
+  width: 100%;
+  max-width: none;
+  aspect-ratio: 1000 / 568;
+  height: auto;
+  object-fit: cover;
+  object-position: center;
+}
+.worn-gallery__slide-caption {
+  padding-top: 12px;
+  color: var(--worn-muted);
+  font-size: 14px;
+}
+.worn-gallery.is-enhanced .worn-gallery__slide-caption { display: none; }
+.worn-gallery__footer { align-items: center; }
+.worn-gallery__edition { font: 400 24px/normal var(--font-body); }
+.worn-gallery__details {
+  margin-top: 8px !important;
+  color: #66655f;
+  font: 400 11px/1.5 var(--font-mono, var(--font-caption));
+  letter-spacing: 1.4px;
+}
+.worn-gallery__controls { display: flex; align-items: center; gap: 20px; }
+.worn-gallery__counter { color: var(--worn-muted); font: 400 12px/normal var(--font-mono, var(--font-caption)); white-space: nowrap; }
+.worn-gallery__button {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 52px;
+  height: 52px;
+  padding: 0;
+  border: 1px solid var(--worn-rule);
+  border-radius: 0;
+  background: transparent;
+  color: var(--worn-ink);
+  cursor: pointer;
+}
+.worn-gallery__button:hover { background: var(--worn-ink); color: var(--worn-paper); }
+.worn-gallery svg { display: block; width: 20px; height: 20px; flex-shrink: 0; }
+.worn-gallery svg path { fill: currentColor; }
+.worn-gallery__progress { display: flex; gap: 8px; height: 2px; }
+.worn-gallery__progress-button {
+  display: block;
+  flex: 1;
+  min-width: 0;
+  height: 24px;
+  margin: -11px 0;
+  padding: 11px 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  cursor: pointer;
+}
+.worn-gallery__progress-button::after { content: ""; display: block; height: 2px; background: var(--worn-progress); }
+.worn-gallery__progress-button[aria-current="true"]::after { background: var(--worn-ink); }
+.worn-gallery__collaboration { align-items: center; padding: 12px 0; }
+.worn-gallery__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--worn-ink);
+  font: 400 12px/1.5 var(--font-mono, var(--font-caption));
+  letter-spacing: 1px;
+  text-decoration: none;
+}
+.worn-gallery__link svg { width: 18px; height: 18px; }
+.worn-gallery__link:hover { text-decoration: underline; text-underline-offset: 4px; }
+.worn-gallery :focus-visible { outline: 2px solid var(--worn-ink); outline-offset: 4px; }
+.worn-gallery__viewport:focus-visible { outline-offset: -2px; }
+.worn-gallery [hidden] { display: none !important; }
+/* The static page's introduction and gallery sit in the same lead. */
+.lead > .worn-gallery { margin-top: 100px; }
+@media (max-width: 760px) {
+  .worn-gallery { gap: 24px; padding: 40px 24px; }
+  .worn-gallery__heading, .worn-gallery__footer, .worn-gallery__collaboration { flex-direction: column; align-items: flex-start; gap: 20px; }
+  .worn-gallery__title { font-size: clamp(42px, 8vw, 60px); }
+  .worn-gallery__eyebrow { font-size: 10px; letter-spacing: 1.6px; }
+  .worn-gallery__viewport { gap: 16px; padding-right: 12%; }
+  .worn-gallery__image { aspect-ratio: 4 / 3; }
+  .worn-gallery__edition { font-size: 22px; }
+  .worn-gallery__controls { width: 100%; gap: 16px; }
+  .worn-gallery .worn-gallery__counter { margin-right: auto; }
+  .worn-gallery__link { font-size: 11px; }
+  .lead > .worn-gallery { margin-top: 56px; }
+}

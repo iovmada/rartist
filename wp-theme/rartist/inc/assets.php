@@ -58,6 +58,7 @@ function rartist_css_conditional(): array {
 
 	if ( rartist_is_prelaunch() ) {
 		$sheets['rartist-prelaunch'] = 'assets/css/templates/prelaunch.css';
+		$sheets['rartist-worn-editions'] = 'assets/css/components/worn-editions.css';
 	}
 
 	return $sheets;
@@ -93,6 +94,7 @@ function rartist_enqueue_assets(): void {
 	wp_enqueue_script( 'rartist', RARTIST_URI . '/assets/js/main.js', array(), rartist_asset_version( 'assets/js/main.js' ), true );
 
 	if ( rartist_is_prelaunch() ) {
+		wp_enqueue_script( 'rartist-worn-editions', RARTIST_URI . '/assets/js/worn-editions.js', array(), rartist_asset_version( 'assets/js/worn-editions.js' ), true );
 		wp_enqueue_script( 'rartist-prelaunch', RARTIST_URI . '/assets/js/prelaunch.js', array(), rartist_asset_version( 'assets/js/prelaunch.js' ), true );
 	}
 
